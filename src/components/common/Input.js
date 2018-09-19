@@ -11,7 +11,7 @@ const Input = ({
   placeholder,
   meta: { touched, error }
 }) => (
-  <div>
+  <div className='textField'>
     {label && <label>{label}</label>}
     <div>
       <input {...input} {...{ placeholder, type }} />

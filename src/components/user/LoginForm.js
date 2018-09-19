@@ -11,6 +11,7 @@ import {
 import Loading from '../common/Loading';
 import Input from '../common/Input';
 import { validations, login } from '../../utils/constraints';
+import smilies from '../../img/smilies.svg';
 
 const messages = defineMessages({
   email: { id: 'login.form.email' },
@@ -19,7 +20,18 @@ const messages = defineMessages({
 
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
   <div  className='loginForm'>
-    <form onSubmit={handleSubmit}>
+    <div className='aboutContact'>
+      <div className='cross'>✖</div>
+      <div>
+        <a href='#' className='about' > ABOUT</a><br />
+        <a href='#' className='contact'> CONTACT</a>
+      </div>
+    </div>
+    <img src={smilies} />
+    <p className='targetTitle'>TARGET MVD</p>
+    <p className='targetSlogan'>Find people near you & Connect</p>
+    <p className='targetDescription'>Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+    <form className='loginFields' onSubmit={handleSubmit}>
       {error && <strong>{error}</strong>}
       <div>
         <Field
@@ -37,8 +49,8 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           type="password"
         />
       </div>
-      <button type="submit">
-        <FormattedMessage id="login.form.submit" />
+      <button className='loginBtn' type="submit">
+        SIGN IN
       </button>
       {submitting && <Loading />}
     </form>
