@@ -1,0 +1,19 @@
+.appPromo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:center;
+  height: 100%;
+  background-color: #2fbcf7;
+  object-fit: contain;
+  flex: 1;
+}
+
+
+.social {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 120px;
+}
