@@ -5,6 +5,7 @@ export default {
   'login.form.email': 'Email',
   'login.form.password': 'Password',
   'login.form.submit': 'Submit',
+  'login.facebook': 'CONNECT WITH FACEBOOK',
 
   'login.forgot_password': 'Forgot your password?',
 

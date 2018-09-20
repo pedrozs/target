@@ -9,11 +9,22 @@
   flex: 1;
 }
 
-
 .social {
   margin-top: 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
   width: 120px;
+}
+
+.phone {
+  position: relative;
+
+  .play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-25%);
+  }
+
 }

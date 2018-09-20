@@ -9,20 +9,13 @@ const Input = ({
   label,
   type,
   placeholder,
+  className,
   meta: { touched, error }
 }) => (
-  <div className='textField'>
+  <div className={className}>
     {label && <label>{label}</label>}
     <div>
       <input {...input} {...{ placeholder, type }} />
-      {touched && error &&
-        <span>
-          <FormattedMessage
-            id={parseInputErrors(error)}
-            defaultMessage={parseInputErrors(error)}
-          />
-        </span>
-      }
     </div>
   </div>
 );
@@ -33,6 +26,7 @@ Input.propTypes = {
   type: string.isRequired,
   placeholder: string,
   meta: object,
+  className: string,
 };
 
 export default Input;

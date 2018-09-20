@@ -1,6 +1,7 @@
 import React from 'react';
 import { func, string, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { Link } from 'react-router-dom';
 import {
   injectIntl,
   intlShape,
@@ -8,10 +9,12 @@ import {
   FormattedMessage
 } from 'react-intl';
 
+import routes from '../../constants/routesPaths';
 import Loading from '../common/Loading';
 import Input from '../common/Input';
 import { validations, login } from '../../utils/constraints';
 import smilies from '../../img/smilies.svg';
+import close from '../../img/close.png';
 
 const messages = defineMessages({
   email: { id: 'login.form.email' },
@@ -21,17 +24,17 @@ const messages = defineMessages({
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
   <div  className='loginForm'>
     <div className='aboutContact'>
-      <div className='cross'>✖</div>
+      <img src={close} alt="close" className='cross' />
       <div>
         <a href='#' className='about' > ABOUT</a><br />
         <a href='#' className='contact'> CONTACT</a>
       </div>
     </div>
-    <img src={smilies} />
+    <img alt="smilies" src={smilies} />
     <p className='targetTitle'>TARGET MVD</p>
     <p className='targetSlogan'>Find people near you & Connect</p>
     <p className='targetDescription'>Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
-    <form className='loginFields' onSubmit={handleSubmit}>
+    <form className='form' onSubmit={handleSubmit}>
       {error && <strong>{error}</strong>}
       <div>
         <Field
@@ -39,6 +42,7 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.email)}
           component={Input}
           type="email"
+          className="loginInput"
         />
       </div>
       <div>
@@ -47,11 +51,23 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.password)}
           component={Input}
           type="password"
+          className="loginInput"
         />
       </div>
-      <button className='loginBtn' type="submit">
-        SIGN IN
+      <button className='loginInput loginBtn' type="submit">
+        <FormattedMessage id="signup.signin" />
       </button>
+      <a className='forgotPassword'>
+        <FormattedMessage id="login.forgot_password" />
+      </a>
+      <a className="connectFacebook" >
+        <FormattedMessage id="login.facebook" />
+      </a>
+      <div className="separator" />
+      <Link to={routes.signUp}>
+        <FormattedMessage id="signup.title" />
+      </Link>
+      
       {submitting && <Loading />}
     </form>
   </div>

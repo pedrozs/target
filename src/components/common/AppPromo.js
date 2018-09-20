@@ -3,15 +3,19 @@ import phoneImage from '../../img/i-6.png';
 import twitter from '../../img/twitter.png';
 import facebook from '../../img/facebook.png';
 import appStore from '../../img/appstore-button.png';
+import play from '../../img/play.png';
 
 const AppPromo = () => (
-  <div className='appPromo'>
-    <img src={phoneImage}  />
-    <img src={appStore} />
+  <div className="appPromo">
+    <div className="phone" >
+      <img className="play" alt="play" src={play} />
+      <img alt="phone" src={phoneImage} />
+    </div>
+    <img alt="appStore" src={appStore} />
     <div className='social'>
-      <img src={facebook} />
-      <img src={twitter} />
-     </div>
+      <img alt="fb" src={facebook} />
+      <img alt="tw" src={twitter} />
+    </div>
 
   </div>
 );

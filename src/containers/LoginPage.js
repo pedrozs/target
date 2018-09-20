@@ -2,7 +2,6 @@ import React from 'react';
 import { bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
 
 import LoginForm from '../components/user/LoginForm';
 import { login } from '../actions/sessionActions';
