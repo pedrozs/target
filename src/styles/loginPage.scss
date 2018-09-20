@@ -145,8 +145,12 @@
     letter-spacing: 3px;
   }
 
-  .visible {
-    opacity: 0;
+  .loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    width: 100px;
   }
 
 

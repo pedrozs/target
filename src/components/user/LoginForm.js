@@ -67,8 +67,9 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
       <Link to={routes.signUp}>
         <FormattedMessage id="signup.title" />
       </Link>
-      
-      {submitting && <Loading />}
+      <div className="loading" >
+        {submitting && <Loading />}
+      </div>
     </form>
   </div>
 );
