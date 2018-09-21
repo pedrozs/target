@@ -11,7 +11,7 @@ export const login = {
 };
 
 export const signUp = {
-  name: {
+  username: {
     presence: { message: 'name.presence' },
   },
   email: {
