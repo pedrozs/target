@@ -1,19 +1,19 @@
 .appPromo {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items:center;
-  height: 100%;
+  align-items: center;
   background-color: #2fbcf7;
-  object-fit: contain;
+  display: flex;
   flex: 1;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  object-fit: contain;
 }
 
 .social {
-  margin-top: 1rem;
+  align-items: center;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+  margin-top: 1rem;
   width: 120px;
 }
 
@@ -21,10 +21,9 @@
   position: relative;
 
   .play {
+    left: 50%;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%,-25%);
+    transform: translate(-50%, -25%);
   }
-
 }

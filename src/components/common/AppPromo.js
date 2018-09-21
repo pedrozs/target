@@ -12,7 +12,7 @@ const AppPromo = () => (
       <img alt="phone" src={phoneImage} />
     </div>
     <img alt="appStore" src={appStore} />
-    <div className='social'>
+    <div className="social">
       <img alt="fb" src={facebook} />
       <img alt="tw" src={twitter} />
     </div>

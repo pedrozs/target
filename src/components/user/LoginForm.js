@@ -22,19 +22,19 @@ const messages = defineMessages({
 });
 
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
-  <div  className='loginForm'>
-    <div className='aboutContact'>
-      <img src={close} alt="close" className='cross' />
+  <div className="loginForm">
+    <div className="aboutContact">
+      <img src={close} alt="close" className="cross" />
       <div>
-        <a href='#' className='about' > ABOUT</a><br />
-        <a href='#' className='contact'> CONTACT</a>
+        <a href="#" className="about" > ABOUT</a><br />
+        <a href="#" className="contact"> CONTACT</a>
       </div>
     </div>
     <img alt="smilies" src={smilies} />
-    <p className='targetTitle'>TARGET MVD</p>
-    <p className='targetSlogan'>Find people near you & Connect</p>
-    <p className='targetDescription'>Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
-    <form className='form' onSubmit={handleSubmit}>
+    <p className="targetTitle">TARGET MVD</p>
+    <p className="targetSlogan">Find people near you & Connect</p>
+    <p className="targetDescription">Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+    <form className="form" onSubmit={handleSubmit}>
       {error && <strong>{error}</strong>}
       <div>
         <Field
@@ -54,10 +54,10 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           className="loginInput"
         />
       </div>
-      <button className='loginInput loginBtn' type="submit">
+      <button className="loginInput loginBtn" type="submit">
         <FormattedMessage id="signup.signin" />
       </button>
-      <a className='forgotPassword'>
+      <a className="forgotPassword">
         <FormattedMessage id="login.forgot_password" />
       </a>
       <a className="connectFacebook" >

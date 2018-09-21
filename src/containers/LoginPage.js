@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import LoginForm from '../components/user/LoginForm';
 import { login } from '../actions/sessionActions';
 import routes from '../constants/routesPaths';
-import AppPromo from '../components/common/AppPromo'
+import AppPromo from '../components/common/AppPromo';
 
 const LoginPage = ({ login, authenticated }) => {
   if (authenticated) {
@@ -14,7 +14,7 @@ const LoginPage = ({ login, authenticated }) => {
   }
 
   return (
-    <div className='loginPage'>
+    <div className="loginPage">
       <LoginForm onSubmit={login} />
       <AppPromo />
     </div>
