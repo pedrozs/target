@@ -23,8 +23,8 @@ const messages = defineMessages({
 
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
   <div className="loginForm">
-    <div className="aboutContact">
-      <img src={close} alt="close" className="cross" />
+    <div className="topLeft">
+      <img src={close} alt="close" className="icon" />
       <div>
         <a href="#" className="about" > ABOUT</a><br />
         <a href="#" className="contact"> CONTACT</a>
@@ -42,7 +42,7 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.email)}
           component={Input}
           type="email"
-          className="loginInput"
+          className="input"
         />
       </div>
       <div>
@@ -51,10 +51,10 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.password)}
           component={Input}
           type="password"
-          className="loginInput"
+          className="input"
         />
       </div>
-      <button className="loginInput loginBtn" type="submit">
+      <button className="input button" type="submit">
         <FormattedMessage id="signup.signin" />
       </button>
       <a className="forgotPassword">

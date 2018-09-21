@@ -9,7 +9,7 @@ export const login = user =>
       sessionService.saveUser(user);
     }).catch((err) => {
       throw new SubmissionError({
-        _error: err.error
+        _error: err.errors
       });
     });
 

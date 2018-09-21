@@ -1,12 +1,12 @@
 import React from 'react';
 import { bool, func } from 'prop-types';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
-import { FormattedMessage } from 'react-intl';
+import { Redirect } from 'react-router-dom';
 
 import { signUp } from '../actions/userActions';
-import SignUpForm from '../components/user/SignUpForm';
+import AppPromo from '../components/common/AppPromo';
 import routes from '../constants/routesPaths';
+import SignUpForm from '../components/user/SignUpForm';
 
 const SignUpPage = ({ signUp, authenticated }) => {
   if (authenticated) {
@@ -14,12 +14,9 @@ const SignUpPage = ({ signUp, authenticated }) => {
   }
 
   return (
-    <div>
-      <p><FormattedMessage id="signup.title" /></p>
+    <div className="signUpPage">
       <SignUpForm onSubmit={signUp} />
-      <Link to={routes.login}>
-        <FormattedMessage id="signup.signin" />
-      </Link>
+      <AppPromo />
     </div>
   );
 };

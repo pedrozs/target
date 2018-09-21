@@ -1,13 +1,25 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import { connect } from 'react-redux';
+import { object } from 'prop-types';
 
-import LogoutButton from '../components/user/LogoutButton';
+import { logout } from '../actions/sessionActions';
 
-const HomePage = () => (
+const HomePage = ({ logout }) => (
   <div>
     <p><FormattedMessage id="home.welcome" /></p>
-    <LogoutButton />
+    <button onClick={logout}>
+      <FormattedMessage id="logout.button" />
+    </button>
   </div>
 );
 
-export default HomePage;
+HomePage.propTypes = {
+  logout: object,
+};
+
+const mapDispatch = dispatch => ({
+  logout: () => dispatch(logout())
+});
+
+export default connect(null, mapDispatch)(HomePage);
