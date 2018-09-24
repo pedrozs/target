@@ -93,9 +93,9 @@
   }
 
   .input {
-    position: relative;
     height: 37px;
     margin: 21px;
+    position: relative;
     width: 188px;
 
     input {
@@ -122,28 +122,24 @@
     }
 
     .error {
+      color: red;
+      font-size: .7rem;
       position: absolute;
       right: 0;
       top: 70%;
       transform: translateX(110%);
-      font-size: .7rem;
-      color: red;
     }
   }
 
-  .gender {
-    position: relative;
-  }
-
   .gender .error {
+    color: red;
+    font-size: .7rem;
+    font-weight: initial;
+    letter-spacing: initial;
     position: absolute;
     right: 0;
     top: 40%;
     transform: translateX(100%);
-    font-size: .7rem;
-    font-weight: initial;
-    letter-spacing: initial;
-    color: red;
   }
 
   .forgot-password {
@@ -197,6 +193,7 @@
     justify-content: flex-end;
     letter-spacing: 3px;
     margin-top: 1.5rem;
+    position: relative;
     text-align: center;
 
     .input {

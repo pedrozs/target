@@ -20,14 +20,14 @@ export const signUp = {
   },
   password: {
     presence: { message: 'password.presence' },
-    length: { minimum: 8 , message: 'password.minimum'}
+    length: { minimum: 8, message: 'password.minimum' }
   },
   password_confirmation: {
     presence: { message: 'passwordConfirmation.presence' },
     equality: { attribute: 'password', message: 'passwordConfirmation.equality' }
   },
   gender: {
-    presence: { message: 'gender.presence'},
+    presence: { message: 'gender.presence' },
   }
 };
 

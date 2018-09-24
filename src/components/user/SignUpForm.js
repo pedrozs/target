@@ -1,7 +1,6 @@
 import React from 'react';
 import { object, func, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
-import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
   injectIntl,
@@ -22,7 +21,8 @@ const messages = defineMessages({
   email: { id: 'login.form.email' },
   password: { id: 'login.form.password' },
   passConfirmation: { id: 'signup.form.passconfirmation' },
-  gender: { id: 'signup.gender' }
+  gender: { id: 'signup.gender' },
+  genderSelect: { id: 'signup.genderSelect' }
 });
 
 const options = [
@@ -31,12 +31,8 @@ const options = [
   { value: 'other', label: 'Other' }
 ];
 
-var errorMsg = "";
-
-const signupForm = ({ formError, error, handleSubmit, submitting, intl }) => (
+const signupForm = ({ error, handleSubmit, submitting, intl }) => (
   <div className="signup-form">
-    <div className='error'>
-    </div>
     <div className="top-left">
       <img src={menu} alt="menu" className="icon" />
     </div>
@@ -92,7 +88,7 @@ const signupForm = ({ formError, error, handleSubmit, submitting, intl }) => (
           classNamePrefix="react-select"
           options={options}
           isSearchable="false"
-          placeholder="SELECT YOUR GENDER"
+          placeholder={intl.formatMessage(messages.genderSelect)}
         />
       </div>
       <button className="input button" type="submit">

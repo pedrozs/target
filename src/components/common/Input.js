@@ -13,11 +13,11 @@ const Input = ({
 }) => (
   <div className={className}>
     {label && <label>{label}</label>}
-    <div className='error'>
+    <div className="error">
       {touched && error &&
         <FormattedMessage
-        id={parseInputErrors(error)}
-        defaultMessage={parseInputErrors(error)}
+          id={parseInputErrors(error)}
+          defaultMessage={parseInputErrors(error)}
         />
       }
     </div>

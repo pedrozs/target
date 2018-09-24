@@ -29,18 +29,18 @@ class SelectBox extends Component {
       <div>
         {label && <label className="input-label" htmlFor={input.name}>{label}</label>}
         <div>
-          <div className='error'>
+          <div className="error">
             {touched && error &&
               <FormattedMessage
-              id={parseInputErrors(error)}
-              defaultMessage={parseInputErrors(error)}
+                id={parseInputErrors(error)}
+                defaultMessage={parseInputErrors(error)}
               />
             }
           </div>
           <Select
             name={input.name}
             options={options}
-            className={(touched && error) ? className + ' red-box' : className}
+            className={(touched && error) ? `${className} red-box` : className}
             classNamePrefix={classNamePrefix}
             placeholder={placeholder || false}
             onBlur={this.onBlur}
@@ -61,7 +61,9 @@ SelectBox.propTypes = {
   label: string,
   placeholder: string,
   options: array,
-  meta: object
+  meta: object,
+  className: string,
+  classNamePrefix: string
 };
 
 export default SelectBox;

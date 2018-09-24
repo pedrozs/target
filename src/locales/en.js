@@ -14,6 +14,7 @@ export default {
   'signup.signin': 'SIGN IN',
   'signup.form.passconfirmation': 'CONFIRM PASSWORD',
   'signup.gender': 'GENDER',
+  'signup.genderSelect': 'SELECT YOUR GENDER',
   'signup.presence': 'All fields are mandatory',
 
   'logout.button': 'LOGOUT',
@@ -27,7 +28,7 @@ export default {
   'password.presence': 'You must enter a password to continue',
   'passwordConfirmation.presence': 'You must enter a password confirmation to continue',
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
-  'password.minimum' : 'Your password must be at least 8 characters long',
+  'password.minimum': 'Your password must be at least 8 characters long',
 
-  'gender.presence' : 'You must select a gender to continue'
+  'gender.presence': 'You must select a gender to continue'
 };
