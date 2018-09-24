@@ -8,5 +8,7 @@ export const signUp = user =>
     sessionApi.signUp({ user }).then(({ user }) => {
       sessionService.saveUser(user);
     }).catch((err) => {
-      throw new SubmissionError(err.errors);
+      throw new SubmissionError({
+        _error: err.errors
+      });
     });

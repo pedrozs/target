@@ -6,12 +6,12 @@ import appStore from '../../img/appstore-button.png';
 import play from '../../img/play.png';
 
 const AppPromo = () => (
-  <div className="appPromo">
+  <div className="app-promo">
     <div className="phone" >
       <img className="play" alt="play" src={play} />
       <img alt="phone" src={phoneImage} />
     </div>
-    <img alt="appStore" src={appStore} />
+    <img alt="appstore" src={appStore} />
     <div className="social">
       <img alt="fb" src={facebook} />
       <img alt="tw" src={twitter} />

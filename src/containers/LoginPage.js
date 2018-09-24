@@ -3,10 +3,10 @@ import { bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import LoginForm from '../components/user/LoginForm';
 import { login } from '../actions/sessionActions';
-import routes from '../constants/routesPaths';
 import AppPromo from '../components/common/AppPromo';
+import LoginForm from '../components/user/LoginForm';
+import routes from '../constants/routesPaths';
 
 const LoginPage = ({ login, authenticated }) => {
   if (authenticated) {
@@ -14,7 +14,7 @@ const LoginPage = ({ login, authenticated }) => {
   }
 
   return (
-    <div className="loginPage">
+    <div className="login-page">
       <LoginForm onSubmit={login} />
       <AppPromo />
     </div>

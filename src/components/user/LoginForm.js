@@ -22,18 +22,18 @@ const messages = defineMessages({
 });
 
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
-  <div className="loginForm">
-    <div className="aboutContact">
-      <img src={close} alt="close" className="cross" />
+  <div className="login-form">
+    <div className="top-left">
+      <img src={close} alt="close" className="icon" />
       <div>
         <a href="#" className="about" > ABOUT</a><br />
         <a href="#" className="contact"> CONTACT</a>
       </div>
     </div>
     <img alt="smilies" src={smilies} />
-    <p className="targetTitle">TARGET MVD</p>
-    <p className="targetSlogan">Find people near you & Connect</p>
-    <p className="targetDescription">Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+    <p className="target-title">TARGET MVD</p>
+    <p className="target-slogan">Find people near you & Connect</p>
+    <p className="target-description">Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
     <form className="form" onSubmit={handleSubmit}>
       {error && <strong>{error}</strong>}
       <div>
@@ -42,7 +42,7 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.email)}
           component={Input}
           type="email"
-          className="loginInput"
+          className="input"
         />
       </div>
       <div>
@@ -51,16 +51,16 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
           label={intl.formatMessage(messages.password)}
           component={Input}
           type="password"
-          className="loginInput"
+          className="input"
         />
       </div>
-      <button className="loginInput loginBtn" type="submit">
+      <button className="input button" type="submit">
         <FormattedMessage id="signup.signin" />
       </button>
-      <a className="forgotPassword">
+      <a className="forgot-password">
         <FormattedMessage id="login.forgot_password" />
       </a>
-      <a className="connectFacebook" >
+      <a className="connect-facebook" >
         <FormattedMessage id="login.facebook" />
       </a>
       <div className="separator" />

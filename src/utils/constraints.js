@@ -11,16 +11,23 @@ export const login = {
 };
 
 export const signUp = {
+  username: {
+    presence: { message: 'name.presence' },
+  },
   email: {
     presence: { message: 'email.presence' },
     email: { message: 'email.invalid' }
   },
   password: {
-    presence: { message: 'password.presence' }
+    presence: { message: 'password.presence' },
+    length: { minimum: 8, message: 'password.minimum' }
   },
-  passwordConfirmation: {
+  password_confirmation: {
     presence: { message: 'passwordConfirmation.presence' },
     equality: { attribute: 'password', message: 'passwordConfirmation.equality' }
+  },
+  gender: {
+    presence: { message: 'gender.presence' },
   }
 };
 
