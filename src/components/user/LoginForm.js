@@ -22,8 +22,8 @@ const messages = defineMessages({
 });
 
 export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
-  <div className="loginForm">
-    <div className="topLeft">
+  <div className="login-form">
+    <div className="top-left">
       <img src={close} alt="close" className="icon" />
       <div>
         <a href="#" className="about" > ABOUT</a><br />
@@ -31,9 +31,9 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
       </div>
     </div>
     <img alt="smilies" src={smilies} />
-    <p className="targetTitle">TARGET MVD</p>
-    <p className="targetSlogan">Find people near you & Connect</p>
-    <p className="targetDescription">Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
+    <p className="target-title">TARGET MVD</p>
+    <p className="target-slogan">Find people near you & Connect</p>
+    <p className="target-description">Create a  target  wherever on the map, specify your interest: Travel, Dating, Music, etc and start conecting with others who share your interest.</p>
     <form className="form" onSubmit={handleSubmit}>
       {error && <strong>{error}</strong>}
       <div>
@@ -57,10 +57,10 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
       <button className="input button" type="submit">
         <FormattedMessage id="signup.signin" />
       </button>
-      <a className="forgotPassword">
+      <a className="forgot-password">
         <FormattedMessage id="login.forgot_password" />
       </a>
-      <a className="connectFacebook" >
+      <a className="connect-facebook" >
         <FormattedMessage id="login.facebook" />
       </a>
       <div className="separator" />

@@ -1,8 +1,8 @@
 import React from 'react';
 import { object, func, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Select from 'react-select';
 import {
   injectIntl,
   intlShape,
@@ -10,6 +10,7 @@ import {
   FormattedMessage
 } from 'react-intl';
 
+import SelectBox from '../common/Select';
 import routes from '../../constants/routesPaths';
 import Loading from '../common/Loading';
 import Input from '../common/Input';
@@ -30,12 +31,16 @@ const options = [
   { value: 'other', label: 'Other' }
 ];
 
-const SignUpForm = ({ error, handleSubmit, submitting, intl }) => (
-  <div className="signupForm">
-    <div className="topLeft">
+var errorMsg = "";
+
+const signupForm = ({ formError, error, handleSubmit, submitting, intl }) => (
+  <div className="signup-form">
+    <div className='error'>
+    </div>
+    <div className="top-left">
       <img src={menu} alt="menu" className="icon" />
     </div>
-    <p className="targetTitle">
+    <p className="target-title">
       <FormattedMessage id="signup.title" />
     </p>
     <form className="form" onSubmit={handleSubmit}>
@@ -78,10 +83,10 @@ const SignUpForm = ({ error, handleSubmit, submitting, intl }) => (
         />
       </div>
       <div className="gender">
-        {intl.formatMessage(messages.gender)}
         <Field
           name="gender"
-          component={Select}
+          label={intl.formatMessage(messages.gender)}
+          component={SelectBox}
           type="text"
           className="input"
           classNamePrefix="react-select"
@@ -104,7 +109,7 @@ const SignUpForm = ({ error, handleSubmit, submitting, intl }) => (
   </div>
 );
 
-SignUpForm.propTypes = {
+signupForm.propTypes = {
   handleSubmit: func.isRequired,
   submitting: bool.isRequired,
   intl: intlShape.isRequired,
@@ -114,4 +119,4 @@ SignUpForm.propTypes = {
 export default reduxForm({
   form: 'signUp',
   validate: validations(signUp, { fullMessages: false })
-})(injectIntl(SignUpForm));
+})(injectIntl(signupForm));

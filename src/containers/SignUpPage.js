@@ -14,7 +14,7 @@ const SignUpPage = ({ signUp, authenticated }) => {
   }
 
   return (
-    <div className="signUpPage">
+    <div className="signup-page">
       <SignUpForm onSubmit={signUp} />
       <AppPromo />
     </div>

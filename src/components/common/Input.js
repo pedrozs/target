@@ -1,8 +1,7 @@
 import React from 'react';
 import { string, object } from 'prop-types';
-// import { FormattedMessage } from 'react-intl';
-
-// import { parseInputErrors } from '../../utils/helpers';
+import { FormattedMessage } from 'react-intl';
+import { parseInputErrors } from '../../utils/helpers';
 
 const Input = ({
   input,
@@ -14,8 +13,16 @@ const Input = ({
 }) => (
   <div className={className}>
     {label && <label>{label}</label>}
+    <div className='error'>
+      {touched && error &&
+        <FormattedMessage
+        id={parseInputErrors(error)}
+        defaultMessage={parseInputErrors(error)}
+        />
+      }
+    </div>
     <div>
-      <input {...input} {...{ placeholder, type }} className={(touched && error) ? 'redBox' : ''} />
+      <input {...input} {...{ placeholder, type }} className={(touched && error) ? 'red-box' : ''} />
     </div>
   </div>
 );

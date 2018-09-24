@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { object } from 'prop-types';
+import { func } from 'prop-types';
 
 import { logout } from '../actions/sessionActions';
 
@@ -15,7 +16,7 @@ const HomePage = ({ logout }) => (
 );
 
 HomePage.propTypes = {
-  logout: object,
+  logout: func,
 };
 
 const mapDispatch = dispatch => ({
