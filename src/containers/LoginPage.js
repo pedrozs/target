@@ -3,19 +3,19 @@ import { bool, func } from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
-import { login } from '../actions/sessionActions';
+import { login, loginFacebook } from '../actions/sessionActions';
 import AppPromo from '../components/common/AppPromo';
 import LoginForm from '../components/user/LoginForm';
 import routes from '../constants/routesPaths';
 
-const LoginPage = ({ login, authenticated }) => {
+const LoginPage = ({ loginFacebook, login, authenticated }) => {
   if (authenticated) {
     return <Redirect to={routes.index} />;
   }
 
   return (
     <div className="login-page">
-      <LoginForm onSubmit={login} />
+      <LoginForm onSubmit={login} onFbLogin={loginFacebook} />
       <AppPromo />
     </div>
   );
@@ -24,6 +24,7 @@ const LoginPage = ({ login, authenticated }) => {
 LoginPage.propTypes = {
   login: func.isRequired,
   authenticated: bool.isRequired,
+  loginFacebook: func,
 };
 
 const mapState = state => ({
@@ -31,7 +32,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  login: user => dispatch(login(user.toJS()))
+  login: user => dispatch(login(user.toJS())),
+  loginFacebook: user => dispatch(loginFacebook(user.accessToken))
 });
 
 export default connect(mapState, mapDispatch)(LoginPage);

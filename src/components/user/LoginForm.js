@@ -2,6 +2,7 @@ import React from 'react';
 import { func, string, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { Link } from 'react-router-dom';
+import FacebookLogin from 'react-facebook-login';
 import {
   injectIntl,
   intlShape,
@@ -18,10 +19,11 @@ import close from '../../img/close.png';
 
 const messages = defineMessages({
   email: { id: 'login.form.email' },
-  password: { id: 'login.form.password' }
+  password: { id: 'login.form.password' },
+  facebook: { id: 'login.facebook' }
 });
 
-export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
+export const LoginForm = ({ onFbLogin, handleSubmit, error, submitting, intl }) => (
   <div className="login-form">
     <div className="top-left">
       <img src={close} alt="close" className="icon" />
@@ -60,9 +62,14 @@ export const LoginForm = ({ handleSubmit, error, submitting, intl }) => (
       <a className="forgot-password">
         <FormattedMessage id="login.forgot_password" />
       </a>
-      <a className="connect-facebook" >
-        <FormattedMessage id="login.facebook" />
-      </a>
+      <FacebookLogin
+        appId="166925907359293"
+        autoLoad
+        fields="name,email,picture"
+        textButton={intl.formatMessage(messages.facebook)}
+        callback={onFbLogin}
+        cssClass="connect-facebook"
+      />
       <div className="separator" />
       <Link to={routes.signUp}>
         <FormattedMessage id="signup.title" />
@@ -78,7 +85,8 @@ LoginForm.propTypes = {
   handleSubmit: func.isRequired,
   intl: intlShape.isRequired,
   submitting: bool.isRequired,
-  error: string
+  error: string,
+  onFbLogin: func
 };
 
 export default reduxForm({

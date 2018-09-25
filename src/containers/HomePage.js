@@ -3,11 +3,12 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { func } from 'prop-types';
 
+import Menu from '../components/common/Menu';
 import { logout } from '../actions/sessionActions';
 
 const HomePage = ({ logout }) => (
-  <div>
-    <p><FormattedMessage id="home.welcome" /></p>
+  <div className="home-page">
+    <Menu />
     <button onClick={logout}>
       <FormattedMessage id="logout.button" />
     </button>
