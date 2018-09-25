@@ -17,9 +17,10 @@ export default {
   'signup.genderSelect': 'SELECT YOUR GENDER',
   'signup.presence': 'All fields are mandatory',
 
-  'logout.button': 'LOGOUT',
-
   'home.welcome': 'Welcome to React Redux Base',
+  'home.logout': 'Logout',
+  'home.edit': 'Edit',
+  'home.firstTarget': 'Create your first target by clicking wherever on the map.',
 
   // errors
   'name.presence': 'You must enter a name to continue',

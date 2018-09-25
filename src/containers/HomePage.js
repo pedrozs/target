@@ -1,26 +1,24 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { func } from 'prop-types';
 
+import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
-import { logout } from '../actions/sessionActions';
 
-const HomePage = ({ logout }) => (
+const HomePage = ({ user }) => (
   <div className="home-page">
-    <Menu />
-    <button onClick={logout}>
-      <FormattedMessage id="logout.button" />
-    </button>
+    <Menu user={user} />
+    <Map
+      isMarkerShown
+      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnJ1E5aZNOvGR1IPh_wH6j2wNffqFYm2s&v=3.exp&libraries=geometry,drawing,places"
+      loadingElement={<div style={{ height: '100%' }} />}
+      containerElement={<div style={{ width: '100%', height: '100%' }} />}
+      mapElement={<div style={{ height: '100%' }} />}
+    />
   </div>
 );
 
-HomePage.propTypes = {
-  logout: func,
-};
-
-const mapDispatch = dispatch => ({
-  logout: () => dispatch(logout())
+const mapStateToProps = state => ({
+  user: state.getIn(['session', 'user', 'firstName']),
 });
 
-export default connect(null, mapDispatch)(HomePage);
+export default connect(mapStateToProps)(HomePage);
