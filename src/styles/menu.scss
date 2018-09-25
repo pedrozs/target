@@ -1,4 +1,46 @@
 .menu {
+  align-items: center;
   display: flex;
   flex-direction: column;
+  width: 30%;
+  padding: 1rem;
+
+  .profile-pic {
+    position: relative;
+    height: 100px;
+    width: 100px;
+
+    img {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .edit-logout {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .8rem;
+    color: $_BLACK;
+
+    .logout {
+      color: $_BLACK;
+    }
+
+    .edit {
+      color: $_LIGHT-BLUE;
+    }
+  }
+
+  .spacer {
+    flex-grow: 1;
+    height: auto;
+  }
+
+  .bottom-smilies {
+    height: 48px;
+    margin: 26px;
+  }
 }
