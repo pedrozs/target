@@ -15,7 +15,7 @@ export const login = user =>
 
 export const loginFacebook = user =>
   () => {
-    sessionApi.loginFacebook({ access_token: user }).then(({ data: user }) => {
+    sessionApi.loginFacebook({ accessToken: user }).then(({ data: user }) => {
       sessionService.saveUser(user);
     }).catch((err) => {
       throw new SubmissionError({

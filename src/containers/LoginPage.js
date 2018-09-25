@@ -33,7 +33,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   login: user => dispatch(login(user.toJS())),
-  loginFacebook: user => dispatch(loginFacebook(user.accessToken))
+  loginFacebook: ({ accessToken }) => dispatch(loginFacebook(accessToken))
 });
 
 export default connect(mapState, mapDispatch)(LoginPage);
