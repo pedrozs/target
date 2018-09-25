@@ -15,11 +15,7 @@ export const login = user =>
 
 export const loginFacebook = user =>
   () => {
-<<<<<<< HEAD
     sessionApi.loginFacebook({ accessToken: user }).then(({ data: user }) => {
-=======
-    sessionApi.loginFacebook({ access_token: user }).then(({ data: user }) => {
->>>>>>> 4141ffc23af725423a283d6c270d75640a6b5623
       sessionService.saveUser(user);
     }).catch((err) => {
       throw new SubmissionError({
