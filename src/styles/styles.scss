@@ -2,6 +2,7 @@
 @import '~loaders.css/src/animations/ball-scale-multiple';
 @import 'settings';
 @import 'loginSignupPage.scss';
+@import 'homePage.scss';
 
 body,
 html {
@@ -24,4 +25,17 @@ html {
   // These two classes are required by react-loaders
   .loader-hidden { display: none; }
   .loader-active { display: block; }
+}
+
+.target-title {
+  color: $black;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-stretch: normal;
+  font-style: normal;
+  font-weight: bold;
+  height: 27px;
+  letter-spacing: 3px;
+  line-height: normal;
+  margin-top: 2rem;
 }

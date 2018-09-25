@@ -5,6 +5,10 @@ class Session {
     return api.post('/users/sign_in', user);
   }
 
+  static loginFacebook(user) {
+    return api.post('/users/facebook', user);
+  }
+
   static logout() {
     return api.delete('/users/sign_out');
   }

@@ -5,13 +5,24 @@ import sessionApi from '../api/sessionApi';
 
 export const login = user =>
   () =>
-    sessionApi.login({ user }).then(({ user }) => {
+    sessionApi.login({ user }).then(({ data: user }) => {
       sessionService.saveUser(user);
     }).catch((err) => {
       throw new SubmissionError({
         _error: err.errors
       });
     });
+
+export const loginFacebook = user =>
+  () => {
+    sessionApi.loginFacebook({ accessToken: user }).then(({ data: user }) => {
+      sessionService.saveUser(user);
+    }).catch((err) => {
+      throw new SubmissionError({
+        _error: err.errors
+      });
+    });
+  };
 
 export const logout = () =>
   () =>
