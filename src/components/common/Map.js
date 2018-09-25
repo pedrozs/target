@@ -8,9 +8,9 @@ import marker from '../../img/marker.svg';
 const Map = withScriptjs(withGoogleMap(props =>
   <GoogleMap
     defaultZoom={18}
-    defaultCenter={{ lat: props.coords.latitude, lng: props.coords.longitude }}
+    defaultCenter={{ lat: props.coords.latitude || -34.901112, lng: props.coords.longitude || -56.164532 }}
   >
-    {props.isMarkerShown && <Marker icon={{ url: marker }} position={{ lat: props.coords.latitude, lng: props.coords.longitude }} />}
+    {props.isMarkerShown && <Marker icon={{ url: marker }} position={{ lat: props.coords.latitude || -34.901112, lng: props.coords.longitude || -56.164532 }} />}
   </GoogleMap>));
 
 Map.propTypes = {
