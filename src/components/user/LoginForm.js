@@ -10,6 +10,7 @@ import {
   FormattedMessage
 } from 'react-intl';
 
+import fbID from '../../constants/constants';
 import routes from '../../constants/routesPaths';
 import Loading from '../common/Loading';
 import Input from '../common/Input';
@@ -63,7 +64,7 @@ export const LoginForm = ({ onFbLogin, handleSubmit, error, submitting, intl }) 
         <FormattedMessage id="login.forgot_password" />
       </a>
       <FacebookLogin
-        appId="166925907359293"
+        appId={fbID}
         autoLoad
         fields="name,email,picture"
         textButton={intl.formatMessage(messages.facebook)}
@@ -86,7 +87,7 @@ LoginForm.propTypes = {
   intl: intlShape.isRequired,
   submitting: bool.isRequired,
   error: string,
-  onFbLogin: func
+  onFbLogin: func.isRequired
 };
 
 export default reduxForm({
