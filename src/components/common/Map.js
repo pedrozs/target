@@ -1,6 +1,6 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { bool } from 'prop-types';
+import { bool, object } from 'prop-types';
 import { geolocated } from 'react-geolocated';
 
 import marker from '../../img/marker.svg';
@@ -18,6 +18,7 @@ const Map = withScriptjs(withGoogleMap((props) => {
 
 Map.propTypes = {
   isMarkerShown: bool,
+  coords: object,
 };
 
 export default geolocated({
