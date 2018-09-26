@@ -5,13 +5,16 @@ import { geolocated } from 'react-geolocated';
 
 import marker from '../../img/marker.svg';
 
-const Map = withScriptjs(withGoogleMap(props =>
-  <GoogleMap
-    defaultZoom={18}
-    defaultCenter={{ lat: props.coords.latitude || -34.901112, lng: props.coords.longitude || -56.164532 }}
-  >
-    {props.isMarkerShown && <Marker icon={{ url: marker }} position={{ lat: props.coords.latitude || -34.901112, lng: props.coords.longitude || -56.164532 }} />}
-  </GoogleMap>));
+const Map = withScriptjs(withGoogleMap((props) => {
+  const { latitude, longitude } = props.coords;
+  return (
+    <GoogleMap
+      defaultZoom={18}
+      defaultCenter={{ lat: latitude || -34.901112, lng: longitude || -56.164532 }}
+    >
+      {props.isMarkerShown && <Marker icon={{ url: marker }} position={{ lat: latitude || -34.901112, lng: longitude || -56.164532 }} />}
+    </GoogleMap>);
+}));
 
 Map.propTypes = {
   isMarkerShown: bool,

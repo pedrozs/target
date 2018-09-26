@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 import { logout } from '../../actions/sessionActions';
 import smilies from '../../img/smilies.svg';
 import profilePic from '../../img/guy.svg';
-import blueCricle from '../../img/blue-circle.svg';
+import blueCircle from '../../img/blue-circle.svg';
 
 const Menu = ({ logout, user }) => (
   <div className="menu">
     <p className="target-title">TARGET</p>
     <div className="profile-pic" >
-      <img src={blueCricle} alt="blue" />
+      <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>
     <p> { user } </p>
@@ -34,8 +34,8 @@ const mapDispatch = dispatch => ({
 });
 
 Menu.propTypes = {
-  logout: func,
-  user: string,
+  logout: func.isRequired,
+  user: string.isRequired,
 };
 
 export default connect(null, mapDispatch)(Menu);
