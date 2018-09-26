@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { string } from 'prop-types';
 
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
@@ -16,6 +17,10 @@ const HomePage = ({ user }) => (
     />
   </div>
 );
+
+HomePage.propTypes = {
+  user: string.isRequired,
+};
 
 const mapStateToProps = state => ({
   user: state.getIn(['session', 'user', 'firstName']),
