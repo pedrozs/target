@@ -2,22 +2,24 @@ import React from 'react';
 import { func, string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { logout } from '../../actions/sessionActions';
 import smilies from '../../img/smilies.svg';
 import profilePic from '../../img/guy.svg';
 import blueCircle from '../../img/blue-circle.svg';
+import routes from '../../constants/routesPaths';
 
-const Menu = ({ logout, userName }) => (
+const Menu = ({ logout, username }) => (
   <div className="menu">
-    <p className="target-title">TARGET</p>
+    <p className="target-title">EDIT PROFILE</p>
     <div className="profile-pic" >
       <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>
-    <p>{ userName }</p>
+    <p>{ username }</p>
     <p className="edit-logout">
-      <a className="edit" ><FormattedMessage id="home.edit" /></a>
+      <Link to={routes.editUser} className="edit" > <FormattedMessage id="home.edit" /> </Link>
       /
       <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
     </p>
@@ -35,7 +37,7 @@ const mapDispatch = dispatch => ({
 
 Menu.propTypes = {
   logout: func.isRequired,
-  userName: string.isRequired,
+  username: string.isRequired,
 };
 
 export default connect(null, mapDispatch)(Menu);

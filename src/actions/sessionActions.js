@@ -2,6 +2,16 @@ import { SubmissionError } from 'redux-form/immutable';
 import { sessionService } from 'redux-react-session';
 
 import sessionApi from '../api/sessionApi';
+import * as types from './actionTypes';
+
+const editSucess = () => ({
+  type: types.EDIT_SUCCESS
+});
+
+const toast = message => ({
+  type: types.TOAST,
+  message
+});
 
 export const login = user =>
   () =>
@@ -32,3 +42,17 @@ export const logout = () =>
     }).catch((err) => {
       throw (err);
     });
+
+export const editUser = user =>
+  dispatch =>
+    sessionApi.updateUser(user)
+      .then(({ user }) => {
+        dispatch(editSucess());
+        dispatch(toast('CHANGES SAVED'));
+        sessionService.saveUser(user);
+      })
+      .catch((err) => {
+        throw new SubmissionError({
+          _error: err.errors
+        });
+      });

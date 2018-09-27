@@ -3,6 +3,7 @@ import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import NotFoundPage from './containers/NotFoundPage';
+import EditUserPage from './containers/EditUserPage';
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
   {
     path: routesPaths.signUp,
     component: SignUpPage
+  },
+  {
+    path: routesPaths.editUser,
+    component: EditUserPage,
+    private: true
   },
   {
     component: NotFoundPage

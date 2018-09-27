@@ -22,6 +22,11 @@ export default {
   'home.edit': 'Edit',
   'home.firstTarget': 'Create your first target by clicking wherever on the map.',
 
+  'edit.firstName': 'NAME',
+  'edit.lastName': 'SURNAME',
+  'edit.submit': 'SAVE CHANGES',
+  'edit.success': 'CHANGES SAVED',
+
   // errors
   'name.presence': 'You must enter a name to continue',
   'email.presence': 'You must enter an email to continue',
