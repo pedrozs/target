@@ -8,18 +8,18 @@ import smilies from '../../img/smilies.svg';
 import profilePic from '../../img/guy.svg';
 import blueCircle from '../../img/blue-circle.svg';
 
-const Menu = ({ logout, user }) => (
+const Menu = ({ logout, userName }) => (
   <div className="menu">
     <p className="target-title">TARGET</p>
     <div className="profile-pic" >
       <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>
-    <p> { user } </p>
+    <p>{ userName }</p>
     <p className="edit-logout">
-      <a className="edit" > <FormattedMessage id="home.edit" /> </a>
+      <a className="edit" ><FormattedMessage id="home.edit" /></a>
       /
-      <a className="logout" onClick={logout}> <FormattedMessage id="home.logout" /> </a>
+      <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
     </p>
     <p>
       <FormattedMessage id="home.firstTarget" />
@@ -35,7 +35,7 @@ const mapDispatch = dispatch => ({
 
 Menu.propTypes = {
   logout: func.isRequired,
-  user: string.isRequired,
+  userName: string.isRequired,
 };
 
 export default connect(null, mapDispatch)(Menu);

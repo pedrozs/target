@@ -4,26 +4,27 @@ import { string } from 'prop-types';
 
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
+import { MAPS_API } from '../constants/constants';
 
-const HomePage = ({ user }) => (
+const HomePage = ({ userName }) => (
   <div className="home-page">
-    <Menu user={user} />
+    <Menu user={userName} />
     <Map
       isMarkerShown
-      googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnJ1E5aZNOvGR1IPh_wH6j2wNffqFYm2s&v=3.exp&libraries=geometry,drawing,places"
-      loadingElement={<div style={{ height: '100%' }} />}
-      containerElement={<div style={{ width: '100%', height: '100%' }} />}
+      googleMapURL={MAPS_API}
+      loadingElement={<div className="maps-loading" />}
+      containerElement={<div className="maps-container" />}
       mapElement={<div className="google-maps" />}
     />
   </div>
 );
 
 HomePage.propTypes = {
-  user: string.isRequired,
+  userName: string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  user: state.getIn(['session', 'user', 'firstName']),
+  userName: state.getIn(['session', 'user', 'firstName']),
 });
 
 export default connect(mapStateToProps)(HomePage);
