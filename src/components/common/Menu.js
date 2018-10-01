@@ -37,7 +37,7 @@ const mapDispatch = dispatch => ({
 
 Menu.propTypes = {
   logout: func.isRequired,
-  username: string.isRequired,
+  username: string,
 };
 
 export default connect(null, mapDispatch)(Menu);

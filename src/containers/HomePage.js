@@ -32,7 +32,7 @@ const HomePage = ({ updateLoc, toast, toasted, username }) => {
 };
 
 HomePage.propTypes = {
-  username: string.isRequired,
+  username: string,
   toast: object,
   toasted: func,
   updateLoc: func
