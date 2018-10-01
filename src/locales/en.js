@@ -24,8 +24,8 @@ export default {
   'home.firstTarget': 'Create your first target by clicking wherever on the map.',
 
   'edit.title': 'EDIT PROFILE',
-  'edit.firstName': 'NAME',
-  'edit.lastName': 'SURNAME',
+  'edit.firstName': 'FIRST NAME',
+  'edit.lastName': 'LAST NAME',
   'edit.submit': 'SAVE CHANGES',
   'edit.success': 'CHANGES SAVED',
 

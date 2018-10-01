@@ -17,6 +17,12 @@ const burnt = () => ({
   type: types.TOASTED,
 });
 
+const newLoc = ({ latitude, longitude }) => ({
+  type: types.UPDATE_LOC,
+  latitude,
+  longitude
+});
+
 export const login = user =>
   () =>
     sessionApi.login({ user }).then(({ data: user }) => {
@@ -60,5 +66,7 @@ export const editUser = user =>
           _error: err.errors
         });
       });
+
+export const updateLoc = coords => dispatch => dispatch(newLoc(coords));
 
 export const toasted = dispatch => dispatch(burnt());

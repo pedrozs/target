@@ -3,16 +3,19 @@ import { connect } from 'react-redux';
 import { string, object, func } from 'prop-types';
 import { ToastContainer, ToastStore } from 'react-toasts';
 
-import { toasted } from '../actions/sessionActions';
+import { toasted, updateLoc } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
 import { MAPS_API } from '../constants/constants';
 
-const HomePage = ({ toast, toasted, username }) => {
+const HomePage = ({ updateLoc, toast, toasted, username }) => {
   if (toast.toast) {
     ToastStore.success(toast.message, 3000);
     toasted();
   }
+  navigator.geolocation.watchPosition((position) => {
+    updateLoc(position.coords);
+  });
   return (
     <div className="home-page">
       <Menu username={username} />
@@ -31,7 +34,8 @@ const HomePage = ({ toast, toasted, username }) => {
 HomePage.propTypes = {
   username: string.isRequired,
   toast: object,
-  toasted: func
+  toasted: func,
+  updateLoc: func
 };
 
 const mapStateToProps = state => ({
@@ -40,7 +44,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toasted: () => dispatch(toasted)
+  toasted: () => dispatch(toasted),
+  updateLoc: coords => dispatch(updateLoc(coords))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
