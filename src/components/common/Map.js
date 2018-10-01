@@ -10,7 +10,6 @@ const Map = withScriptjs(withGoogleMap(({ isMarkerShown, lat, lng }) => (
     defaultZoom={18}
     defaultCenter={{ lat, lng }}
   >
-    {console.log(lat)}
     {isMarkerShown &&
       <Marker
         icon={{ url: marker }}
