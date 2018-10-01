@@ -13,6 +13,10 @@ const toast = message => ({
   message
 });
 
+const burnt = () => ({
+  type: types.TOASTED,
+});
+
 export const login = user =>
   () =>
     sessionApi.login({ user }).then(({ data: user }) => {
@@ -56,3 +60,5 @@ export const editUser = user =>
           _error: err.errors
         });
       });
+
+export const toasted = dispatch => dispatch(burnt());

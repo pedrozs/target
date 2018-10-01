@@ -1,15 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { string, object } from 'prop-types';
+import { string, object, func } from 'prop-types';
 import { ToastContainer, ToastStore } from 'react-toasts';
 
+import { toasted } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
 import { MAPS_API } from '../constants/constants';
 
-const HomePage = ({ toast, username }) => {
+const HomePage = ({ toast, toasted, username }) => {
   if (toast.toast) {
     ToastStore.success(toast.message, 3000);
+    toasted();
   }
   return (
     <div className="home-page">
@@ -28,7 +30,8 @@ const HomePage = ({ toast, username }) => {
 
 HomePage.propTypes = {
   username: string.isRequired,
-  toast: object
+  toast: object,
+  toasted: func
 };
 
 const mapStateToProps = state => ({
@@ -36,4 +39,8 @@ const mapStateToProps = state => ({
   toast: state.getIn(['toast']).toJS()
 });
 
-export default connect(mapStateToProps)(HomePage);
+const mapDispatchToProps = dispatch => ({
+  toasted: () => dispatch(toasted)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

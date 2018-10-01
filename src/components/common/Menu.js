@@ -11,15 +11,15 @@ import blueCircle from '../../img/blue-circle.svg';
 import routes from '../../constants/routesPaths';
 
 const Menu = ({ logout, username }) => (
-  <div className="menu">
-    <p className="target-title">EDIT PROFILE</p>
+  <div className="side-menu menu">
+    <p className="target-title"><FormattedMessage id="home.title" /></p>
     <div className="profile-pic" >
       <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>
     <p>{ username }</p>
     <p className="edit-logout">
-      <Link to={routes.editUser} className="edit" > <FormattedMessage id="home.edit" /> </Link>
+      <Link to={routes.editUser} className="edit" ><FormattedMessage id="home.edit" /></Link>
       /
       <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
     </p>

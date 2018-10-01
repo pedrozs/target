@@ -37,7 +37,7 @@ const options = [
 ];
 
 let EditForm = ({ initialValues: user, handleSubmit, error, submitting, intl }) => (
-  <div className="login-form menu">
+  <div className="side-menu menu">
     <div className="top-left">
       <Link to={Routes.index}>
         <img src={close} alt="back" className="icon" />
