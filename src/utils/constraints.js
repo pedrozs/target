@@ -31,5 +31,11 @@ export const signUp = {
   }
 };
 
+export const edit = {
+  email: {
+    email: { message: 'email.invalid' }
+  }
+};
+
 export const validations = (constraints, props = {}) =>
   data => validate(data.toJS(), constraints, props) || {};

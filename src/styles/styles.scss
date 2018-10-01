@@ -39,3 +39,31 @@ html {
   line-height: normal;
   margin-top: 2rem;
 }
+
+.form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  justify-content: center;
+}
+
+.button {
+  background-color: $black;
+  color: white;
+  font-size: .7rem;
+  font-weight: 500;
+  justify-content: center;
+  letter-spacing: 3px;
+  margin-top: 21px;
+  text-transform: uppercase;
+}
+
+.side-menu {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  width: 30%;
+}

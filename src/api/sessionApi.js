@@ -16,6 +16,10 @@ class Session {
   static signUp(user) {
     return api.post('/users', user);
   }
+  static updateUser(user) {
+    const { id } = user;
+    return api.put(`users/${id}`, { user });
+  }
 }
 
 export default Session;
