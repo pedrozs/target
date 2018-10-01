@@ -3,16 +3,18 @@ import { fromJS } from 'immutable';
 import { UPDATE_LOC } from '../actions/actionTypes';
 
 const initialState = fromJS({
-  latitude: -34.901112,
-  longitude: -34.901112
+  coords: {
+    latitude: -34.901112,
+    longitude: -56.201296
+  }
 });
 
-const editSucess = (state = initialState, { type, latitude, longitude }) => {
+const geo = (state = initialState, { type, coords }) => {
   if (type === UPDATE_LOC) {
-    const aux = state.set('latitude', fromJS(latitude));
-    return aux.set('longitude', fromJS(longitude));
+    const { latitude, longitude } = coords;
+    return state.set('coords', fromJS({ latitude, longitude }));
   }
   return state;
 };
 
-export default editSucess;
+export default geo;

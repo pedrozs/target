@@ -17,10 +17,9 @@ const burnt = () => ({
   type: types.TOASTED,
 });
 
-const newLoc = ({ latitude, longitude }) => ({
+const newLoc = coords => ({
   type: types.UPDATE_LOC,
-  latitude,
-  longitude
+  coords
 });
 
 export const login = user =>

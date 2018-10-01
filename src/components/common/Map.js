@@ -10,6 +10,7 @@ const Map = withScriptjs(withGoogleMap(({ isMarkerShown, lat, lng }) => (
     defaultZoom={18}
     defaultCenter={{ lat, lng }}
   >
+    {console.log(lat)}
     {isMarkerShown &&
       <Marker
         icon={{ url: marker }}
@@ -24,8 +25,8 @@ Map.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  lat: state.getIn(['geo', 'latitude']),
-  lng: state.getIn(['geo', 'longitude'])
+  lat: state.getIn(['geo', 'coords', 'latitude']),
+  lng: state.getIn(['geo', 'coords', 'longitude'])
 });
 
 export default connect(mapStateToProps)(Map);
