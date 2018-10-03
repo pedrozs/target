@@ -20,10 +20,11 @@ const Menu = ({ logout, username }) => (
     <p>{ username }</p>
     <p className="edit-logout">
       <Link to={routes.editUser} className="edit" ><FormattedMessage id="home.edit" /></Link>
-      /
+      &nbsp;/&nbsp;
       <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
     </p>
-    <p>
+    <div className="separator" />
+    <p className="target-slogan center">
       <FormattedMessage id="home.firstTarget" />
     </p>
     <div className="spacer" />
