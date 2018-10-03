@@ -78,7 +78,7 @@ let EditForm = ({ initialValues: user, handleSubmit, error, submitting, intl }) 
           className="input"
         />
       </div>
-      <div className="gender">
+      <div className="select-box">
         <Field
           name="gender"
           label={intl.formatMessage(messages.gender)}

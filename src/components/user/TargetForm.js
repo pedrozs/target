@@ -73,7 +73,7 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, updateTopics,
             type="text"
           />
         </div>
-        <div className="gender">
+        <div className="select-box">
           <Field
             className="input"
             classNamePrefix="react-select"
