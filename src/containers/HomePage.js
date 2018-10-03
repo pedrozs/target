@@ -5,7 +5,7 @@ import { ToastContainer, ToastStore } from 'react-toasts';
 import { Route } from 'react-router-dom';
 
 import history from '../utils/history';
-import { toasted, editUser } from '../actions/sessionActions';
+import { editUser } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
 import EditForm from '../components/user/EditForm';
@@ -98,7 +98,6 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  toasted: () => dispatch(toasted),
   edit: user => dispatch(editUser(user.toJS())),
 });
 

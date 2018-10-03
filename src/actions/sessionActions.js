@@ -6,11 +6,7 @@ import * as types from './actionTypes';
 import history from '../utils/history';
 import routes from '../constants/routesPaths';
 
-const editSucess = () => ({
-  type: types.EDIT_SUCCESS
-});
-
-const burnt = () => ({
+export const burnt = () => ({
   type: types.TOASTED,
 });
 
@@ -50,11 +46,10 @@ export const logout = () =>
     });
 
 export const editUser = user =>
-  dispatch =>
+  () =>
     sessionApi.updateUser(user)
       .then(({ user }) => {
         history.push(routes.index);
-        dispatch(editSucess());
         sessionService.saveUser(user);
       })
       .catch((err) => {
@@ -62,8 +57,6 @@ export const editUser = user =>
           _error: err.errors
         });
       });
-
-export const toasted = dispatch => dispatch(burnt());
 
 export const updateTopics = () => (dispatch) => {
   sessionApi.getTopics().then((topics) => {
