@@ -1,31 +1,37 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { bool, number } from 'prop-types';
-import { connect } from 'react-redux';
 
 import marker from '../../img/marker.svg';
 
-const Map = withScriptjs(withGoogleMap(({ isMarkerShown, lat, lng }) => (
-  <GoogleMap
-    defaultZoom={18}
-    defaultCenter={{ lat, lng }}
-  >
-    {isMarkerShown &&
-      <Marker
-        icon={{ url: marker }}
-        position={{ lat, lng }}
-      />}
-  </GoogleMap>)));
+const Map = withScriptjs(withGoogleMap(({ handleClick, isMarkerShown,
+  coords, target }) => {
+  const { latitude, longitude } = coords;
+  return (
+    <GoogleMap
+      onClick={handleClick}
+      defaultZoom={18}
+      defaultCenter={{ lat: latitude, lng: longitude }}
+    >
+      {isMarkerShown &&
+        <Marker
+          icon={{ url: marker }}
+          position={{ lat: latitude, lng: longitude }}
+        />}
+      {target &&
+        <Marker
+          icon={{ url: marker }}
+          position={{ lat: target.lat, lng: target.lng }}
+        />
+      }
+    </GoogleMap>);
+}));
 
 Map.propTypes = {
   isMarkerShown: bool,
-  lat: number,
-  lng: number
+  latitude: number,
+  longitude: number,
+  new: bool
 };
 
-const mapStateToProps = state => ({
-  lat: state.getIn(['geo', 'coords', 'latitude']),
-  lng: state.getIn(['geo', 'coords', 'longitude'])
-});
-
-export default connect(mapStateToProps)(Map);
+export default (Map);

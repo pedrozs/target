@@ -1,0 +1,36 @@
+.react-select__control {
+  border: solid 1px $black;
+  border-radius: 0;
+  height: 30px;
+}
+
+.red-box .react-select__control {
+  border: solid 1px red;
+}
+
+.react-select__placeholder {
+  color: $black;
+  font-size: .7rem;
+  line-height: 26px;
+}
+
+.react-select__input {
+  background-color: transparent;
+  color: transparent;
+  border: none;
+  opacity: 0;
+}
+
+.react-select__value-container {
+  justify-content: center;
+  text-align: center;
+}
+
+.react-select__value {
+  line-height: 28px;
+  user-select: none;
+
+  .react-select__value-label {
+    line-height: 26px;
+  }
+}

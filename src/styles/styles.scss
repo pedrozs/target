@@ -3,6 +3,7 @@
 @import 'settings';
 @import 'loginSignupPage.scss';
 @import 'homePage.scss';
+@import 'reactSelect.scss';
 
 body,
 html {
@@ -41,11 +42,16 @@ html {
 }
 
 .form {
+  margin-top: 2rem;
   align-items: center;
   display: flex;
   flex-direction: column;
   flex-grow: 0;
   justify-content: center;
+}
+
+.center {
+  text-align: center;
 }
 
 .button {
@@ -59,11 +65,46 @@ html {
   text-transform: uppercase;
 }
 
-.side-menu {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 1rem;
-  width: 30%;
+.gender label {
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.input {
+  height: 37px;
+  margin: 0 0 41px 0;
+  position: relative;
+  width: 188px;
+
+  input {
+    border: solid 1px $black;
+    display: inline;
+    font-size: .7rem;
+    font-weight: 400;
+    text-align: center;
+  }
+
+  input::placeholder {
+    color: gray;
+  }
+
+  label {
+    font-size: .65rem;
+    letter-spacing: 3px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .red-box {
+    border: solid 1px red;
+  }
+
+  .error {
+    color: red;
+    font-size: .7rem;
+    position: absolute;
+    right: 0;
+    top: 70%;
+    transform: translateX(110%);
+  }
 }

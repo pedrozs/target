@@ -3,6 +3,8 @@ import { sessionService } from 'redux-react-session';
 
 import sessionApi from '../api/sessionApi';
 import * as types from './actionTypes';
+import history from '../utils/history';
+import routes from '../constants/routesPaths';
 
 const editSucess = () => ({
   type: types.EDIT_SUCCESS
@@ -17,9 +19,9 @@ const burnt = () => ({
   type: types.TOASTED,
 });
 
-const newLoc = coords => ({
-  type: types.UPDATE_LOC,
-  coords
+const topicUpdater = topics => ({
+  type: types.UPDATE_TOPICS,
+  topics
 });
 
 export const login = user =>
@@ -56,6 +58,7 @@ export const editUser = user =>
   dispatch =>
     sessionApi.updateUser(user)
       .then(({ user }) => {
+        history.push(routes.index);
         dispatch(editSucess());
         dispatch(toast('CHANGES SAVED'));
         sessionService.saveUser(user);
@@ -66,6 +69,18 @@ export const editUser = user =>
         });
       });
 
-export const updateLoc = coords => dispatch => dispatch(newLoc(coords));
+export const finishTarget = target => (dispatch) => {
+  sessionApi.newTarget(target).then(() => {
+    dispatch(toast('TARGET SAVED'));
+  }).catch(() => {
+    dispatch(toast('TARGET NOT SAVED'));
+  });
+};
 
 export const toasted = dispatch => dispatch(burnt());
+
+export const updateTopics = () => (dispatch) => {
+  sessionApi.getTopics().then((topics) => {
+    dispatch(topicUpdater(topics));
+  });
+};

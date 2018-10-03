@@ -1,51 +1,105 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { string, object, func } from 'prop-types';
+import { string, func } from 'prop-types';
 import { ToastContainer, ToastStore } from 'react-toasts';
+import { Route } from 'react-router-dom';
 
-import { toasted, updateLoc } from '../actions/sessionActions';
+import history from '../utils/history';
+import { toasted, editUser } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import Menu from '../components/common/Menu';
+import EditForm from '../components/user/EditForm';
+import TargetForm from '../components/user/TargetForm';
 import { MAPS_API } from '../constants/constants';
+import routes from '../constants/routesPaths';
 
-const HomePage = ({ updateLoc, toast, toasted, username }) => {
-  if (toast.toast) {
-    ToastStore.success(toast.message, 3000);
-    toasted();
+class HomePage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
   }
-  navigator.geolocation.watchPosition((position) => {
-    updateLoc(position.coords);
-  });
-  return (
-    <div className="home-page">
-      <Menu username={username} />
-      <Map
-        isMarkerShown
-        googleMapURL={MAPS_API}
-        loadingElement={<div className="maps-loading" />}
-        containerElement={<div className="maps-container" />}
-        mapElement={<div className="google-maps" />}
-      />
-      <ToastContainer store={ToastStore} />
-    </div>
-  );
-};
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { coords } = position;
+      this.setState({
+        coords
+      });
+    });
+  }
+
+  mapClick = ({ latLng }) => {
+    this.setState({
+      target: {
+        lat: latLng.lat(),
+        lng: latLng.lng(),
+      }
+    });
+    history.push(routes.newTarget);
+  }
+
+  eraseTarget = () => {
+    this.setState({
+      target: null
+    });
+  }
+
+  render() {
+    const { username, edit } = this.props;
+    return (
+      <div className="home-page">
+        <Route
+          exact path={routes.index}
+          render={() => (
+            <Menu username={username} />
+          )}
+        />
+        <Route
+          path={routes.editUser}
+          render={() => (
+            <EditForm onSubmit={edit} />
+          )}
+        />
+        <Route
+          path={routes.newTarget}
+          render={() => (
+            <TargetForm
+              eraseTarget={this.eraseTarget}
+              target={this.state.target}
+            />
+          )}
+        />
+        {this.state.coords &&
+          <Map
+            isMarkerShown
+            googleMapURL={MAPS_API}
+            loadingElement={<div className="maps-loading" />}
+            containerElement={<div className="maps-container" />}
+            mapElement={<div className="google-maps" />}
+            handleClick={this.mapClick}
+            target={this.state.target}
+            coords={this.state.coords}
+          />
+        }
+        <ToastContainer store={ToastStore} />
+      </div>
+    );
+  }
+}
 
 HomePage.propTypes = {
   username: string,
-  toast: object,
-  toasted: func,
-  updateLoc: func
+  edit: func
 };
 
-const mapStateToProps = state => ({
+const mapState = state => ({
   username: state.getIn(['session', 'user', 'username']),
-  toast: state.getIn(['toast']).toJS()
+  toast: state.getIn(['toast']).toJS(),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatch = dispatch => ({
   toasted: () => dispatch(toasted),
-  updateLoc: coords => dispatch(updateLoc(coords))
+  edit: user => dispatch(editUser(user.toJS())),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default connect(mapState, mapDispatch)(HomePage);

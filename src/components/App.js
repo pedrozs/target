@@ -12,7 +12,7 @@ import routes from '../routes';
 const App = ({ authenticated, checked }) => (
   <Fragment>
     <Helmet>
-      <title>RS React Redux Base</title>
+      <title>Target</title>
     </Helmet>
     <ConnectedRouter history={history}>
       {checked &&

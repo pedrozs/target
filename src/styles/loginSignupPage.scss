@@ -72,45 +72,6 @@
   letter-spacing: 2px;
 }
 
-.input {
-  height: 37px;
-  margin: 21px;
-  position: relative;
-  width: 188px;
-
-  input {
-    border: solid 1px $black;
-    display: inline;
-    font-size: .7rem;
-    font-weight: 400;
-    text-align: center;
-  }
-
-  input::placeholder {
-    color: gray;
-  }
-
-  label {
-    font-size: .65rem;
-    letter-spacing: 3px;
-    text-align: center;
-    text-transform: uppercase;
-  }
-
-  .red-box {
-    border: solid 1px red;
-  }
-
-  .error {
-    color: red;
-    font-size: .7rem;
-    position: absolute;
-    right: 0;
-    top: 70%;
-    transform: translateX(110%);
-  }
-}
-
 .gender .error {
   color: red;
   font-size: .7rem;
@@ -168,7 +129,7 @@ a {
   width: 100px;
 }
 
-.gender {
+.select-box {
   display: flex;
   flex-direction: column;
   font-size: .65rem;
@@ -184,44 +145,6 @@ a {
     font-weight: initial;
     letter-spacing: initial;
     margin-top: .15rem;
-  }
-}
-
-.react-select__control {
-  border: solid 1px $black;
-  border-radius: 0;
-  height: 30px;
-}
-
-.red-box .react-select__control {
-  border: solid 1px red;
-}
-
-.react-select__placeholder {
-  color: $black;
-  font-size: .7rem;
-  line-height: 26px;
-}
-
-.react-select__input {
-  color: transparent;
-}
-
-.react-select__indicators {
-  display: none;
-}
-
-.react-select__value-container {
-  justify-content: center;
-  text-align: center;
-}
-
-.react-select__value {
-  line-height: 28px;
-  user-select: none;
-
-  .react-select__value-label {
-    line-height: 26px;
   }
 }
 

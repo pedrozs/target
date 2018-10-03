@@ -37,5 +37,17 @@ export const edit = {
   }
 };
 
+export const target = {
+  radius: {
+    presence: { message: 'radius.presence' }
+  },
+  title: {
+    presence: { message: 'title.presence' }
+  },
+  topic: {
+    presence: { message: 'topic.presence' }
+  }
+};
+
 export const validations = (constraints, props = {}) =>
   data => validate(data.toJS(), constraints, props) || {};

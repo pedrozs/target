@@ -37,14 +37,14 @@ const options = [
 ];
 
 let EditForm = ({ initialValues: user, handleSubmit, error, submitting, intl }) => (
-  <div className="side-menu menu">
+  <div className="left-panel">
     <div className="top-left">
       <Link to={Routes.index}>
         <img src={close} alt="back" className="icon" />
       </Link>
     </div>
     <p className="target-title"><FormattedMessage id="edit.title" /></p>
-    <div className="profile-pic" >
+    <div className="top-pic" >
       <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>

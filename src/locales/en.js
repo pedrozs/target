@@ -29,6 +29,12 @@ export default {
   'edit.submit': 'SAVE CHANGES',
   'edit.success': 'CHANGES SAVED',
 
+  'target.welcome': 'CREATE NEW TARGET',
+  'target.title': 'TARGET TITLE',
+  'target.area': 'SPECIFY AREA LENGTH',
+  'target.topic': 'SELECT A TOPIC',
+  'target.submit': 'SAVE TARGET',
+
   // errors
   'name.presence': 'You must enter a name to continue',
   'email.presence': 'You must enter an email to continue',
@@ -38,5 +44,9 @@ export default {
   'passwordConfirmation.equality': 'Your password confirmation must be equal to the password',
   'password.minimum': 'Your password must be at least 8 characters long',
 
-  'gender.presence': 'You must select a gender to continue'
+  'gender.presence': 'You must select a gender to continue',
+
+  'radius.presence': 'You must enter a radius',
+  'title.presence': 'You must enter a title',
+  'topic.presence': 'You must select a topic'
 };

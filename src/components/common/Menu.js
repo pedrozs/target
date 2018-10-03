@@ -11,9 +11,9 @@ import blueCircle from '../../img/blue-circle.svg';
 import routes from '../../constants/routesPaths';
 
 const Menu = ({ logout, username }) => (
-  <div className="side-menu menu">
+  <div className="left-panel">
     <p className="target-title"><FormattedMessage id="home.title" /></p>
-    <div className="profile-pic" >
+    <div className="top-pic" >
       <img src={blueCircle} alt="blue" />
       <img src={profilePic} alt="guy" />
     </div>
