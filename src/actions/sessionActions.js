@@ -10,11 +10,6 @@ const editSucess = () => ({
   type: types.EDIT_SUCCESS
 });
 
-const toast = message => ({
-  type: types.TOAST,
-  message
-});
-
 const burnt = () => ({
   type: types.TOASTED,
 });
@@ -60,7 +55,6 @@ export const editUser = user =>
       .then(({ user }) => {
         history.push(routes.index);
         dispatch(editSucess());
-        dispatch(toast('CHANGES SAVED'));
         sessionService.saveUser(user);
       })
       .catch((err) => {
@@ -68,14 +62,6 @@ export const editUser = user =>
           _error: err.errors
         });
       });
-
-export const finishTarget = target => (dispatch) => {
-  sessionApi.newTarget(target).then(() => {
-    dispatch(toast('TARGET SAVED'));
-  }).catch(() => {
-    dispatch(toast('TARGET NOT SAVED'));
-  });
-};
 
 export const toasted = dispatch => dispatch(burnt());
 
