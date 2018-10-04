@@ -12,22 +12,23 @@ import routes from '../../constants/routesPaths';
 
 const Menu = ({ logout, username }) => (
   <div className="left-panel">
-    <p className="target-title"><FormattedMessage id="home.title" /></p>
-    <div className="top-pic" >
-      <img src={blueCircle} alt="blue" />
-      <img src={profilePic} alt="guy" />
+    <div className="column">
+      <p className="target-title"><FormattedMessage id="home.title" /></p>
+      <div className="top-pic" >
+        <img src={blueCircle} alt="blue" />
+        <img src={profilePic} alt="guy" />
+      </div>
+      <p>{ username }</p>
+      <p className="edit-logout">
+        <Link to={routes.editUser} className="edit" ><FormattedMessage id="home.edit" /></Link>
+        &nbsp;/&nbsp;
+        <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
+      </p>
+      <div className="separator" />
+      <p className="target-slogan center">
+        <FormattedMessage id="home.firstTarget" />
+      </p>
     </div>
-    <p>{ username }</p>
-    <p className="edit-logout">
-      <Link to={routes.editUser} className="edit" ><FormattedMessage id="home.edit" /></Link>
-      &nbsp;/&nbsp;
-      <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
-    </p>
-    <div className="separator" />
-    <p className="target-slogan center">
-      <FormattedMessage id="home.firstTarget" />
-    </p>
-    <div className="spacer" />
     <img className="bottom-smilies" src={smilies} alt="smilies" />
   </div>
 );

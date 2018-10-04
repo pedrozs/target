@@ -47,52 +47,53 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, getTopics, er
           <img src={close} alt="back" className="icon" />
         </Link>
       </div>
-      <div className="top-pic" >
-        <img src={targetImg} alt="target" />
-      </div>
-      <div className="target-description center"><FormattedMessage id="target.welcome" /></div>
-      <form className="form" onSubmit={handleSubmit}>
-        {error && <strong>{error}</strong>}
-        <div>
-          <Field
-            className="input"
-            component={Input}
-            label={intl.formatMessage(messages.area)}
-            name="radius"
-            type="text"
-          />
+      <div className="column">
+        <div className="top-pic" >
+          <img src={targetImg} alt="target" />
         </div>
-        <div>
-          <Field
-            className="input"
-            component={Input}
-            label={intl.formatMessage(messages.title)}
-            name="title"
-            type="text"
-          />
-        </div>
-        <div className="select-box">
-          {(topicList.length == 0) ?
-            <Loading /> :
+        <div className="target-description center"><FormattedMessage id="target.welcome" /></div>
+        <form className="form" onSubmit={handleSubmit}>
+          {error && <strong>{error}</strong>}
+          <div>
             <Field
               className="input"
-              classNamePrefix="react-select"
-              component={SelectBox}
-              label={intl.formatMessage(messages.topic)}
-              name="topic"
-              options={topicList}
+              component={Input}
+              label={intl.formatMessage(messages.area)}
+              name="radius"
               type="text"
-            />}
-        </div>
-        <button className="input button" type="submit">
-          <FormattedMessage id="target.submit" />
-        </button>
-        <div className="loading" >
-          {submitting && <Loading />}
-        </div>
-        <div className="spacer" />
-        <img className="bottom-smilies" src={smilies} alt="smilies" />
-      </form>
+            />
+          </div>
+          <div>
+            <Field
+              className="input"
+              component={Input}
+              label={intl.formatMessage(messages.title)}
+              name="title"
+              type="text"
+            />
+          </div>
+          <div className="select-box">
+            {(topicList.length == 0) ?
+              <Loading /> :
+              <Field
+                className="input"
+                classNamePrefix="react-select"
+                component={SelectBox}
+                label={intl.formatMessage(messages.topic)}
+                name="topic"
+                options={topicList}
+                type="text"
+              />}
+          </div>
+          <button className="input button" type="submit">
+            <FormattedMessage id="target.submit" />
+          </button>
+          <div className="loading" >
+            {submitting && <Loading />}
+          </div>
+        </form>
+      </div>
+      <img className="bottom-smilies" src={smilies} alt="smilies" />
     </div>
   );
 };

@@ -11,6 +11,7 @@ import {
 } from 'react-intl';
 
 import Routes from '../../constants/routesPaths';
+import { editUser } from '../../actions/sessionActions';
 import Loading from '../common/Loading';
 import Input from '../common/Input';
 import SelectBox from '../common/Select';
@@ -36,70 +37,71 @@ const options = [
   { value: 'other', label: 'Other' }
 ];
 
-let EditForm = ({ initialValues: user, handleSubmit, error, submitting, intl }) => (
+let EditForm = ({ handleSubmit, error, submitting, intl }) => (
   <div className="left-panel">
     <div className="top-left">
       <Link to={Routes.index}>
         <img src={close} alt="back" className="icon" />
       </Link>
     </div>
-    <p className="target-title"><FormattedMessage id="edit.title" /></p>
-    <div className="top-pic" >
-      <img src={blueCircle} alt="blue" />
-      <img src={profilePic} alt="guy" />
+    <div className="column">
+      <p className="target-title"><FormattedMessage id="edit.title" /></p>
+      <div className="top-pic" >
+        <img src={blueCircle} alt="blue" />
+        <img src={profilePic} alt="guy" />
+      </div>
+      {/* {user.firstName} */}
+      <form className="form" onSubmit={handleSubmit}>
+        {error && <strong>{error}</strong>}
+        <div>
+          <Field
+            name="email"
+            label={intl.formatMessage(messages.email)}
+            component={Input}
+            type="email"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="firstName"
+            label={intl.formatMessage(messages.firstName)}
+            component={Input}
+            type="text"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="lastName"
+            label={intl.formatMessage(messages.lastName)}
+            component={Input}
+            type="text"
+            className="input"
+          />
+        </div>
+        <div className="select-box">
+          <Field
+            name="gender"
+            label={intl.formatMessage(messages.gender)}
+            component={SelectBox}
+            type="text"
+            className="input"
+            classNamePrefix="react-select"
+            options={options}
+            isSearchable="false"
+            placeholder={intl.formatMessage(messages.genderSelect)}
+          />
+        </div>
+        <button className="input button" type="submit">
+          <FormattedMessage id="edit.submit" />
+        </button>
+        <div className="loading" >
+          {submitting && <Loading />}
+        </div>
+      </form>
     </div>
-    {user.firstName}
-    <form className="form" onSubmit={handleSubmit}>
-      {error && <strong>{error}</strong>}
-      <div>
-        <Field
-          name="email"
-          label={intl.formatMessage(messages.email)}
-          component={Input}
-          type="email"
-          className="input"
-        />
-      </div>
-      <div>
-        <Field
-          name="firstName"
-          label={intl.formatMessage(messages.firstName)}
-          component={Input}
-          type="text"
-          className="input"
-        />
-      </div>
-      <div>
-        <Field
-          name="lastName"
-          label={intl.formatMessage(messages.lastName)}
-          component={Input}
-          type="text"
-          className="input"
-        />
-      </div>
-      <div className="select-box">
-        <Field
-          name="gender"
-          label={intl.formatMessage(messages.gender)}
-          component={SelectBox}
-          type="text"
-          className="input"
-          classNamePrefix="react-select"
-          options={options}
-          isSearchable="false"
-          placeholder={intl.formatMessage(messages.genderSelect)}
-        />
-      </div>
-      <button className="input button" type="submit">
-        <FormattedMessage id="edit.submit" />
-      </button>
-      <div className="loading" >
-        {submitting && <Loading />}
-      </div>
-      <div className="spacer" />
-      <img className="bottom-smilies" src={smilies} alt="smilies" />
-    </form>
+    <img className="bottom-smilies" src={smilies} alt="smilies" />
   </div>
 );
 
@@ -108,14 +110,20 @@ EditForm.propTypes = {
   intl: intlShape.isRequired,
   submitting: bool.isRequired,
   error: string,
-  initialValues: object.isRequired,
 };
 
 EditForm = reduxForm({
   form: 'login',
-  validate: validations(edit, { fullMessages: false })
+  validate: validations(edit, { fullMessages: false }),
+  enableReinitialize: true
 })(injectIntl(EditForm));
 
-export default EditForm = connect(state => ({
-  initialValues: state.getIn(['session', 'user']).toJS(),
-}))(EditForm);
+const mapState = state => ({
+  initialValues: state.getIn(['session', 'user'])
+});
+
+const mapDispatch = dispatch => ({
+  onSubmit: user => dispatch(editUser(user.toJS()))
+});
+
+export default connect(mapState, mapDispatch)(EditForm);
