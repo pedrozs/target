@@ -22,7 +22,7 @@ class Session {
   static getTopics() {
     return api.get('topics');
   }
-  static newTarget(target) {
+  static createTarget(target) {
     return api.post('targets', { target });
   }
   static getTargets() {

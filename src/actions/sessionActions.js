@@ -6,13 +6,17 @@ import * as types from './actionTypes';
 import history from '../utils/history';
 import routes from '../constants/routesPaths';
 
-export const burnt = () => ({
+export const hideToast = () => ({
   type: types.TOASTED,
 });
 
-const topicUpdater = topics => ({
-  type: types.UPDATE_TOPICS,
+const getTopicsSucess = ({ topics }) => ({
+  type: types.GET_TOPICS_SUCESS,
   topics
+});
+
+const loading = () => ({
+  type: types.LOADING
 });
 
 export const login = user =>
@@ -58,8 +62,9 @@ export const editUser = user =>
         });
       });
 
-export const updateTopics = () => (dispatch) => {
+export const getTopics = () => (dispatch) => {
+  dispatch(loading());
   sessionApi.getTopics().then((topics) => {
-    dispatch(topicUpdater(topics));
+    dispatch(getTopicsSucess(topics));
   });
 };

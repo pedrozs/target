@@ -1,15 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { string, func } from 'prop-types';
+import { string, func, array } from 'prop-types';
 import { ToastContainer, ToastStore } from 'react-toasts';
-import { Route } from 'react-router-dom';
 
+import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
 import { editUser } from '../actions/sessionActions';
 import Map from '../components/common/Map';
-import Menu from '../components/common/Menu';
-import EditForm from '../components/user/EditForm';
-import TargetForm from '../components/user/TargetForm';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
 
@@ -22,18 +19,13 @@ class HomePage extends React.Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
-      this.setState({
-        coords
-      });
+      this.setState({ coords });
     });
   }
 
   mapClick = ({ latLng }) => {
     this.setState({
-      target: {
-        lat: latLng.lat(),
-        lng: latLng.lng(),
-      }
+      target: { lat: latLng.lat(), lng: latLng.lng() }
     });
     history.push(routes.newTarget);
   }
@@ -45,30 +37,9 @@ class HomePage extends React.Component {
   }
 
   render() {
-    const { username, edit } = this.props;
     return (
       <div className="home-page">
-        <Route
-          exact path={routes.index}
-          render={() => (
-            <Menu username={username} />
-          )}
-        />
-        <Route
-          path={routes.editUser}
-          render={() => (
-            <EditForm onSubmit={edit} />
-          )}
-        />
-        <Route
-          path={routes.newTarget}
-          render={() => (
-            <TargetForm
-              eraseTarget={this.eraseTarget}
-              target={this.state.target}
-            />
-          )}
-        />
+        {this.props.subRoutes && this.props.subRoutes.map((route, index) => <RouteFromPath key={index} {...route} />)}
         {this.state.coords &&
           <Map
             isMarkerShown
@@ -89,7 +60,8 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   username: string,
-  edit: func
+  edit: func,
+  subRoutes: array
 };
 
 const mapState = state => ({

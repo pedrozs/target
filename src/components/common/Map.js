@@ -1,11 +1,10 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { bool, number } from 'prop-types';
+import { object, bool, func } from 'prop-types';
 
 import marker from '../../img/marker.svg';
 
-const Map = withScriptjs(withGoogleMap(({ handleClick, isMarkerShown,
-  coords, target }) => {
+const Map = ({ handleClick, isMarkerShown, coords, target }) => {
   const { latitude, longitude } = coords;
   return (
     <GoogleMap
@@ -25,13 +24,13 @@ const Map = withScriptjs(withGoogleMap(({ handleClick, isMarkerShown,
         />
       }
     </GoogleMap>);
-}));
-
-Map.propTypes = {
-  isMarkerShown: bool,
-  latitude: number,
-  longitude: number,
-  new: bool
 };
 
-export default (Map);
+Map.propTypes = {
+  coords: object,
+  handleClick: func,
+  isMarkerShown: bool,
+  target: object,
+};
+
+export default withScriptjs(withGoogleMap(Map));

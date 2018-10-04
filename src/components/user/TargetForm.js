@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, bool, array, func } from 'prop-types';
+import { string, bool, func, array } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,7 @@ import {
   FormattedMessage
 } from 'react-intl';
 
-import { updateTopics, } from '../../actions/sessionActions';
+import { getTopics, } from '../../actions/sessionActions';
 import Routes from '../../constants/routesPaths';
 import Loading from '../common/Loading';
 import Input from '../common/Input';
@@ -32,16 +32,14 @@ const messages = defineMessages({
   success: { id: 'edit.success' }
 });
 
-let TargetForm = ({ error, handleSubmit, submitting, intl, topics, updateTopics, eraseTarget }) => {
-  let topicList;
-  const topicToJSON = topic => ({
-    value: topic.topic.id,
-    label: topic.topic.label
-  });
-  if (topics && topics.length != 0) {
-    topicList = topics.map(topicToJSON);
-  }
-  updateTopics();
+const topicsToJSON = topic => ({
+  value: topic.topic.id,
+  label: topic.topic.label
+});
+
+let TargetForm = ({ error, handleSubmit, submitting, intl, topics, getTopics, eraseTarget }) => {
+  getTopics();
+  const topicList = topics.map(topicsToJSON);
   return (
     <div className="left-panel">
       <div className="top-left">
@@ -74,15 +72,17 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, updateTopics,
           />
         </div>
         <div className="select-box">
-          <Field
-            className="input"
-            classNamePrefix="react-select"
-            component={SelectBox}
-            label={intl.formatMessage(messages.topic)}
-            name="topic"
-            options={topicList}
-            type="text"
-          />
+          {(topicList.length == 0) ?
+            <Loading /> :
+            <Field
+              className="input"
+              classNamePrefix="react-select"
+              component={SelectBox}
+              label={intl.formatMessage(messages.topic)}
+              name="topic"
+              options={topicList}
+              type="text"
+            />}
         </div>
         <button className="input button" type="submit">
           <FormattedMessage id="target.submit" />
@@ -103,7 +103,7 @@ TargetForm.propTypes = {
   submitting: bool.isRequired,
   error: string,
   topics: array,
-  updateTopics: func,
+  getTopics: func,
   eraseTarget: func,
 };
 
@@ -112,8 +112,12 @@ TargetForm = reduxForm({
   validate: validations(target, { fullMessages: false })
 })(injectIntl(TargetForm));
 
-const mapDispatchToProps = dispatch => ({
-  updateTopics: () => dispatch(updateTopics),
+const mapStore = store => ({
+  topics: store.getIn(['topics']).toJS()
 });
 
-export default TargetForm = connect(null, mapDispatchToProps)(TargetForm);
+const mapDispatch = dispatch => ({
+  getTopics: () => dispatch(getTopics()),
+});
+
+export default TargetForm = connect(mapStore, mapDispatch)(TargetForm);
