@@ -51,8 +51,8 @@ let EditForm = ({ initialValues, handleSubmit, error, submitting, intl }) => {
           <img src={blueCircle} alt="blue" />
           <img src={profilePic} alt="guy" />
         </div>
-        {initialValues.toJS().username}
         <form className="form" onSubmit={handleSubmit}>
+          <p>{initialValues.toJS().username}</p>
           {error && <strong>{error}</strong>}
           <div>
             <Field
