@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { string, func, array } from 'prop-types';
+import { string, func, array, object } from 'prop-types';
 
 import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
-import { getTopics } from '../actions/sessionActions';
+import { getTopics } from '../actions/topicActions';
 import Map from '../components/common/Map';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
@@ -12,8 +12,10 @@ import routes from '../constants/routesPaths';
 class HomePage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
-    this.coords = null;
+    this.state = {
+      coords: null,
+      target: null
+    };
   }
 
   componentDidMount() {
@@ -31,12 +33,6 @@ class HomePage extends React.Component {
     history.push(routes.newTarget);
   }
 
-  eraseTarget = () => {
-    this.setState({
-      target: null
-    });
-  }
-
   render() {
     return (
       <div className="home-page">
@@ -50,7 +46,7 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={this.state.target}
+            target={!this.props.match.isExact ? this.state.target : null}
             coords={this.state.coords}
           />
         }
@@ -63,7 +59,8 @@ HomePage.propTypes = {
   username: string,
   edit: func,
   subRoutes: array,
-  getTopics: func
+  getTopics: func,
+  match: object
 };
 
 const mapState = state => ({

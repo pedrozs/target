@@ -10,7 +10,7 @@ import {
   FormattedMessage
 } from 'react-intl';
 
-import { getTopics, } from '../../actions/sessionActions';
+import { getTopics } from '../../actions/topicActions';
 import Routes from '../../constants/routesPaths';
 import { Loading, Input, SelectBox } from '../common';
 import { validations, target } from '../../utils/constraints';

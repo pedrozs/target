@@ -33,6 +33,10 @@ const Menu = ({ logout, username }) => (
   </div>
 );
 
+const mapState = state => ({
+  username: state.getIn(['session', 'user', 'username'])
+});
+
 const mapDispatch = dispatch => ({
   logout: () => dispatch(logout())
 });
@@ -42,4 +46,4 @@ Menu.propTypes = {
   username: string,
 };
 
-export default connect(null, mapDispatch)(Menu);
+export default connect(mapState, mapDispatch)(Menu);
