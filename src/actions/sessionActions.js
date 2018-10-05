@@ -11,7 +11,7 @@ export const hideToast = () => ({
 });
 
 const getTopicsSucess = ({ topics }) => ({
-  type: types.GET_TOPICS_SUCESS,
+  type: types.GET_TOPICS_SUCCESS,
   topics
 });
 

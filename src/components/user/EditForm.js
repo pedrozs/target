@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, string, bool, object } from 'prop-types';
+import { func, string, bool } from 'prop-types';
 import { Field, reduxForm } from 'redux-form/immutable';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
