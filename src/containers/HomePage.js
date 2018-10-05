@@ -4,7 +4,7 @@ import { string, func, array } from 'prop-types';
 
 import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
-import { editUser, getTopics } from '../actions/sessionActions';
+import { getTopics } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
@@ -40,7 +40,8 @@ class HomePage extends React.Component {
   render() {
     return (
       <div className="home-page">
-        {this.props.subRoutes && this.props.subRoutes.map((route, index) => <RouteFromPath key={index} {...route} />)}
+        {this.props.subRoutes && this.props.subRoutes.map((route, index) =>
+          <RouteFromPath key={index} {...route} />)}
         {this.state.coords &&
           <Map
             isMarkerShown
@@ -61,7 +62,8 @@ class HomePage extends React.Component {
 HomePage.propTypes = {
   username: string,
   edit: func,
-  subRoutes: array
+  subRoutes: array,
+  getTopics: func
 };
 
 const mapState = state => ({
@@ -69,7 +71,6 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  edit: user => dispatch(editUser(user.toJS())),
   getTopics: () => dispatch(getTopics())
 });
 

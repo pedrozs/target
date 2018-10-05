@@ -12,9 +12,7 @@ import {
 
 import { getTopics, } from '../../actions/sessionActions';
 import Routes from '../../constants/routesPaths';
-import Loading from '../common/Loading';
-import Input from '../common/Input';
-import SelectBox from '../common/Select';
+import { Loading, Input, SelectBox } from '../common';
 import { validations, target } from '../../utils/constraints';
 import smilies from '../../img/smilies.svg';
 import close from '../../img/close.png';

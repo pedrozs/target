@@ -73,7 +73,7 @@
 }
 
 .gender .error {
-  color: red;
+  color: $red;
   font-size: .7rem;
   font-weight: initial;
   letter-spacing: initial;
@@ -90,7 +90,7 @@
 
 .button {
   background-color: $black;
-  color: white;
+  color: $white;
   font-size: .7rem;
   font-weight: 500;
   justify-content: center;

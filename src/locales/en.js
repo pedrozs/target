@@ -29,6 +29,10 @@ export default {
   'edit.submit': 'SAVE CHANGES',
   'edit.success': 'CHANGES SAVED',
 
+  'gender.male': 'MALE',
+  'gender.female': 'FEMALE',
+  'gender.other': 'OTHER',
+
   'target.welcome': 'CREATE NEW TARGET',
   'target.title': 'TARGET TITLE',
   'target.area': 'SPECIFY AREA LENGTH',

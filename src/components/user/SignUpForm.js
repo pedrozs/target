@@ -9,10 +9,8 @@ import {
   FormattedMessage
 } from 'react-intl';
 
-import SelectBox from '../common/Select';
+import { Loading, Input, SelectBox } from '../common';
 import routes from '../../constants/routesPaths';
-import Loading from '../common/Loading';
-import Input from '../common/Input';
 import { validations, signUp } from '../../utils/constraints';
 import menu from '../../img/menu.png';
 
@@ -22,88 +20,92 @@ const messages = defineMessages({
   password: { id: 'login.form.password' },
   passConfirmation: { id: 'signup.form.passconfirmation' },
   gender: { id: 'signup.gender' },
-  genderSelect: { id: 'signup.genderSelect' }
+  genderSelect: { id: 'signup.genderSelect' },
+  male: { id: 'gender.male' },
+  female: { id: 'gender.female' },
+  other: { id: 'gender.other' }
 });
 
-const options = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' },
-  { value: 'other', label: 'Other' }
-];
+const signupForm = ({ error, handleSubmit, submitting, intl }) => {
+  const options = [
+    { value: 'male', label: intl.formatMessage(messages.male) },
+    { value: 'female', label: intl.formatMessage(messages.female) },
+    { value: 'other', label: intl.formatMessage(messages.other) }
+  ];
 
-const signupForm = ({ error, handleSubmit, submitting, intl }) => (
-  <div className="signup-form">
-    <div className="top-left">
-      <img src={menu} alt="menu" className="icon" />
-    </div>
-    <p className="target-title">
-      <FormattedMessage id="signup.title" />
-    </p>
-    <form className="form" onSubmit={handleSubmit}>
-      {error && <strong>{error.fullMessages[0]}</strong>}
-      <div>
-        <Field
-          name="username"
-          label={intl.formatMessage(messages.name)}
-          component={Input}
-          type="text"
-          className="input"
-        />
+  return (
+    <div className="signup-form">
+      <div className="top-left">
+        <img src={menu} alt="menu" className="icon" />
       </div>
-      <div>
-        <Field
-          name="email"
-          label={intl.formatMessage(messages.email)}
-          component={Input}
-          type="email"
-          className="input"
-        />
-      </div>
-      <div>
-        <Field
-          name="password"
-          label={intl.formatMessage(messages.password)}
-          component={Input}
-          type="password"
-          className="input"
-          placeholder="MIN. 8 CHARACTERS LONG"
-        />
-      </div>
-      <div>
-        <Field
-          name="password_confirmation"
-          label={intl.formatMessage(messages.passConfirmation)}
-          component={Input}
-          type="password"
-          className="input"
-        />
-      </div>
-      <div className="select-box">
-        <Field
-          name="gender"
-          label={intl.formatMessage(messages.gender)}
-          component={SelectBox}
-          type="text"
-          className="input"
-          classNamePrefix="react-select"
-          options={options}
-          isSearchable="false"
-          placeholder={intl.formatMessage(messages.genderSelect)}
-        />
-      </div>
-      <button className="input button" type="submit">
+      <p className="target-title">
         <FormattedMessage id="signup.title" />
-      </button>
-      <div className="separator" />
-      <Link to={routes.login}>
-        <FormattedMessage id="signup.signin" />
-      </Link>
-      <div className="loading" >
-        {submitting && <Loading />}
-      </div>
-    </form>
-  </div>
-);
+      </p>
+      <form className="form" onSubmit={handleSubmit}>
+        {error && <strong>{error.fullMessages[0]}</strong>}
+        <div>
+          <Field
+            name="username"
+            label={intl.formatMessage(messages.name)}
+            component={Input}
+            type="text"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="email"
+            label={intl.formatMessage(messages.email)}
+            component={Input}
+            type="email"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="password"
+            label={intl.formatMessage(messages.password)}
+            component={Input}
+            type="password"
+            className="input"
+            placeholder="MIN. 8 CHARACTERS LONG"
+          />
+        </div>
+        <div>
+          <Field
+            name="password_confirmation"
+            label={intl.formatMessage(messages.passConfirmation)}
+            component={Input}
+            type="password"
+            className="input"
+          />
+        </div>
+        <div className="select-box">
+          <Field
+            name="gender"
+            label={intl.formatMessage(messages.gender)}
+            component={SelectBox}
+            type="text"
+            className="input"
+            classNamePrefix="react-select"
+            options={options}
+            isSearchable="false"
+            placeholder={intl.formatMessage(messages.genderSelect)}
+          />
+        </div>
+        <button className="input button" type="submit">
+          <FormattedMessage id="signup.title" />
+        </button>
+        <div className="separator" />
+        <Link to={routes.login}>
+          <FormattedMessage id="signup.signin" />
+        </Link>
+        <div className="loading" >
+          {submitting && <Loading />}
+        </div>
+      </form>
+    </div>);
+};
 
 signupForm.propTypes = {
   handleSubmit: func.isRequired,
