@@ -4,13 +4,11 @@ import { sessionImmutableReducer as session } from 'redux-react-session';
 import topics from './topicReducer';
 
 import router from './routerReducer';
-import toast from './toastReducer';
 
 const rootReducer = combineReducers({
   form,
   session,
   router,
-  toast,
   topics
 });
 

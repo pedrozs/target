@@ -37,8 +37,7 @@ const topicsToJSON = topic => ({
   label: topic.topic.label
 });
 
-let TargetForm = ({ error, handleSubmit, submitting, intl, topics, getTopics, eraseTarget }) => {
-  getTopics();
+let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }) => {
   const topicList = topics.map(topicsToJSON);
   return (
     <div className="left-panel">
@@ -104,7 +103,6 @@ TargetForm.propTypes = {
   submitting: bool.isRequired,
   error: string,
   topics: array,
-  getTopics: func,
   eraseTarget: func,
 };
 

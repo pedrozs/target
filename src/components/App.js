@@ -4,6 +4,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import history from '../utils/history';
 import RouteFromPath from './routes/RouteFromPath';
@@ -27,6 +29,10 @@ const App = ({ authenticated, checked }) => (
         </Switch>
       }
     </ConnectedRouter>
+    <ToastContainer
+      hideProgressBar
+      position="top-center"
+    />
   </Fragment>
 );
 

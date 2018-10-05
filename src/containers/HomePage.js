@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { string, func, array } from 'prop-types';
-import { ToastContainer, ToastStore } from 'react-toasts';
 
 import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
-import { editUser } from '../actions/sessionActions';
+import { editUser, getTopics } from '../actions/sessionActions';
 import Map from '../components/common/Map';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
@@ -18,6 +17,7 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
+    this.props.getTopics();
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
       this.setState({ coords });
@@ -53,7 +53,6 @@ class HomePage extends React.Component {
             coords={this.state.coords}
           />
         }
-        <ToastContainer store={ToastStore} />
       </div>
     );
   }
@@ -67,11 +66,11 @@ HomePage.propTypes = {
 
 const mapState = state => ({
   username: state.getIn(['session', 'user', 'username']),
-  toast: state.getIn(['toast']).toJS(),
 });
 
 const mapDispatch = dispatch => ({
   edit: user => dispatch(editUser(user.toJS())),
+  getTopics: () => dispatch(getTopics())
 });
 
 export default connect(mapState, mapDispatch)(HomePage);
