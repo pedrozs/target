@@ -4,27 +4,24 @@ import { object, bool, func } from 'prop-types';
 
 import marker from '../../img/marker.svg';
 
-const Map = ({ handleClick, isMarkerShown, coords, target }) => {
-  const { latitude, longitude } = coords;
-  return (
-    <GoogleMap
-      onClick={handleClick}
-      defaultZoom={18}
-      defaultCenter={{ lat: latitude, lng: longitude }}
-    >
-      {isMarkerShown &&
-        <Marker
-          icon={{ url: marker }}
-          position={{ lat: latitude, lng: longitude }}
-        />}
-      {target &&
-        <Marker
-          icon={{ url: marker }}
-          position={{ lat: target.lat, lng: target.lng }}
-        />
-      }
-    </GoogleMap>);
-};
+const Map = ({ handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
+  <GoogleMap
+    onClick={handleClick}
+    defaultZoom={18}
+    defaultCenter={{ lat: latitude, lng: longitude }}
+  >
+    {isMarkerShown &&
+      <Marker
+        icon={{ url: marker }}
+        position={{ lat: latitude, lng: longitude }}
+      />}
+    {target &&
+      <Marker
+        icon={{ url: marker }}
+        position={{ lat: target.lat, lng: target.lng }}
+      />
+    }
+  </GoogleMap>);
 
 Map.propTypes = {
   coords: object,
