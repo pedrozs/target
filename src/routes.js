@@ -3,21 +3,38 @@ import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import NotFoundPage from './containers/NotFoundPage';
+import Menu from './components/common/Menu';
+import EditForm from './components/user/EditForm';
+import TargetForm from './components/user/TargetForm';
 
 const routes = [
   {
-    path: routesPaths.index,
-    component: HomePage,
-    exact: true,
-    private: true
+    path: routesPaths.signUp,
+    component: SignUpPage
   },
   {
     path: routesPaths.login,
     component: LoginPage
   },
   {
-    path: routesPaths.signUp,
-    component: SignUpPage
+    path: routesPaths.index,
+    component: HomePage,
+    private: true,
+    subRoutes: [
+      {
+        path: routesPaths.index,
+        component: Menu,
+        exact: true,
+      },
+      {
+        path: routesPaths.editUser,
+        component: EditForm,
+      },
+      {
+        path: routesPaths.newTarget,
+        component: TargetForm
+      }
+    ]
   },
   {
     component: NotFoundPage

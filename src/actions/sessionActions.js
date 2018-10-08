@@ -1,5 +1,6 @@
 import { SubmissionError } from 'redux-form/immutable';
 import { sessionService } from 'redux-react-session';
+import { toast } from 'react-toastify';
 
 import sessionApi from '../api/sessionApi';
 

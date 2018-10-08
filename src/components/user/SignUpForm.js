@@ -9,10 +9,9 @@ import {
   FormattedMessage
 } from 'react-intl';
 
-import SelectBox from '../common/Select';
+import { Loading, Input, SelectBox } from '../common';
+import { gender } from '../../constants/constants';
 import routes from '../../constants/routesPaths';
-import Loading from '../common/Loading';
-import Input from '../common/Input';
 import { validations, signUp } from '../../utils/constraints';
 import menu from '../../img/menu.png';
 
@@ -22,14 +21,8 @@ const messages = defineMessages({
   password: { id: 'login.form.password' },
   passConfirmation: { id: 'signup.form.passconfirmation' },
   gender: { id: 'signup.gender' },
-  genderSelect: { id: 'signup.genderSelect' }
+  genderSelect: { id: 'signup.genderSelect' },
 });
-
-const options = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' },
-  { value: 'other', label: 'Other' }
-];
 
 const signupForm = ({ error, handleSubmit, submitting, intl }) => (
   <div className="signup-form">
@@ -78,7 +71,7 @@ const signupForm = ({ error, handleSubmit, submitting, intl }) => (
           className="input"
         />
       </div>
-      <div className="gender">
+      <div className="select-box">
         <Field
           name="gender"
           label={intl.formatMessage(messages.gender)}
@@ -86,7 +79,7 @@ const signupForm = ({ error, handleSubmit, submitting, intl }) => (
           type="text"
           className="input"
           classNamePrefix="react-select"
-          options={options}
+          options={gender}
           isSearchable="false"
           placeholder={intl.formatMessage(messages.genderSelect)}
         />
@@ -102,8 +95,7 @@ const signupForm = ({ error, handleSubmit, submitting, intl }) => (
         {submitting && <Loading />}
       </div>
     </form>
-  </div>
-);
+  </div>);
 
 signupForm.propTypes = {
   handleSubmit: func.isRequired,

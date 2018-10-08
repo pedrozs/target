@@ -1,31 +1,33 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { bool } from 'prop-types';
+import { object, bool, func } from 'prop-types';
 
 import marker from '../../img/marker.svg';
 
-const Map = withScriptjs(withGoogleMap((props) => {
-  let latitude;
-  let longitude;
-  navigator.geolocation.getCurrentPosition((position) => {
-    ({ latitude, longitude } = position.coords);
-  });
-  const { isMarkerShown } = props;
-  return (
-    <GoogleMap
-      defaultZoom={18}
-      defaultCenter={{ lat: latitude || -34.901112, lng: longitude || -56.164532 }}
-    >
-      {isMarkerShown &&
-        <Marker
-          icon={{ url: marker }}
-          position={{ lat: latitude || -34.901112, lng: longitude || -56.164532 }}
-        />}
-    </GoogleMap>);
-}));
+const Map = ({ handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
+  <GoogleMap
+    onClick={handleClick}
+    defaultZoom={18}
+    defaultCenter={{ lat: latitude, lng: longitude }}
+  >
+    {isMarkerShown &&
+      <Marker
+        icon={{ url: marker }}
+        position={{ lat: latitude, lng: longitude }}
+      />}
+    {target &&
+      <Marker
+        icon={{ url: marker }}
+        position={{ lat: target.lat, lng: target.lng }}
+      />
+    }
+  </GoogleMap>);
 
 Map.propTypes = {
+  coords: object,
+  handleClick: func,
   isMarkerShown: bool,
+  target: object,
 };
 
-export default (Map);
+export default withScriptjs(withGoogleMap(Map));

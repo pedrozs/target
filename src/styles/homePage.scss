@@ -1,7 +1,58 @@
-@import 'menu.scss';
 @import 'map.scss';
 
 .home-page {
   display: flex;
   height: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-panel {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 25%;
+
+  .top-pic {
+    height: 100px;
+    position: relative;
+    width: 100px;
+
+    img {
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  .edit-logout {
+    align-items: center;
+    color: $black;
+    display: flex;
+    font-size: .9rem;
+    font-weight: 500;
+    justify-content: center;
+  }
+
+  .logout {
+    color: $black;
+  }
+
+  .edit {
+    color: $light-blue;
+  }
+
+  .bottom-smilies {
+    height: 48px;
+    margin: 26px;
+  }
 }

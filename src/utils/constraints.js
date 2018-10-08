@@ -31,5 +31,23 @@ export const signUp = {
   }
 };
 
+export const edit = {
+  email: {
+    email: { message: 'email.invalid' }
+  }
+};
+
+export const target = {
+  radius: {
+    presence: { message: 'radius.presence' }
+  },
+  title: {
+    presence: { message: 'title.presence' }
+  },
+  topic: {
+    presence: { message: 'topic.presence' }
+  }
+};
+
 export const validations = (constraints, props = {}) =>
   data => validate(data.toJS(), constraints, props) || {};

@@ -12,8 +12,7 @@ import {
 
 import { FB_ID } from '../../constants/constants';
 import routes from '../../constants/routesPaths';
-import Loading from '../common/Loading';
-import Input from '../common/Input';
+import { Loading, Input } from '../common';
 import { validations, login } from '../../utils/constraints';
 import smilies from '../../img/smilies.svg';
 import close from '../../img/close.png';
