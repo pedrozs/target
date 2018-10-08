@@ -116,7 +116,9 @@ const mapStore = store => ({
 });
 
 const mapDispatch = dispatch => ({
-  onSubmit: target => dispatch(createTarget(target.toJS())),
+  onSubmit: (target) => {
+    dispatch(createTarget(target.toJS()));
+  },
   getTopics: () => dispatch(getTopics()),
 });
 

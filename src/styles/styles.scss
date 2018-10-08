@@ -28,6 +28,23 @@ html {
   .loader-active { display: block; }
 }
 
+.delete-target {
+  align-items: center;
+  background-color: $red;
+  border: solid 1 px;
+  color: $white;
+  display: flex;
+  font-weight: bold;
+  justify-content: center;
+  left: 50%;
+  letter-spacing: 2px;
+  padding: 10px;
+  position: fixed;
+  top: 20px;
+  z-index: 200;
+  cursor: pointer;
+}
+
 .target-title {
   color: $black;
   font-family: sans-serif;
