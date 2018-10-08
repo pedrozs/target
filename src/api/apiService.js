@@ -3,6 +3,8 @@ import { sessionService } from 'redux-react-session';
 import humps from 'humps';
 import routes from '../constants/routesPaths';
 
+const empty = () => {};
+
 const saveSessionHeaders = (headers) => {
   if (headers.get('access-token')) {
     const sessionHeaders = {
@@ -43,20 +45,22 @@ const handleErrors = response =>
   });
 
 const getResponseBody = (response) => {
-  const bodyIsEmpty = response.status === 204;
+  console.log(response.body);
+  const bodyIsEmpty = (response.status === 204);
   if (bodyIsEmpty) {
     return Promise.resolve();
   }
+
   return response.json();
 };
 
 class Api {
-  performRequest(uri, apiUrl, requestData = {}) {
+  performRequest(uri, apiUrl, requestData = {}, del = false) {
     const url = `${apiUrl}${uri}`;
     return new Promise((resolve, reject) => {
       fetch(url, requestData)
         .then(handleErrors)
-        .then(getResponseBody)
+        .then(!del ? getResponseBody : empty)
         .then(response => resolve(humps.camelizeKeys(response)))
         .catch(error => reject(humps.camelizeKeys(error)));
     });
@@ -110,7 +114,7 @@ class Api {
       body: JSON.stringify(decamelizeData)
     };
     return this.addTokenHeader(requestData)
-      .then(data => this.performRequest(uri, apiUrl, data));
+      .then(data => this.performRequest(uri, apiUrl, data, true));
   }
 
   put(uri, data, apiUrl = process.env.API_URL) {

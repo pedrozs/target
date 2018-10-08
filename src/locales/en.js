@@ -38,6 +38,7 @@ export default {
   'target.area': 'SPECIFY AREA LENGTH',
   'target.topic': 'SELECT A TOPIC',
   'target.submit': 'SAVE TARGET',
+  'target.delete': 'DELETE TARGET',
 
   // errors
   'name.presence': 'You must enter a name to continue',
@@ -52,5 +53,10 @@ export default {
 
   'radius.presence': 'You must enter a radius',
   'title.presence': 'You must enter a title',
-  'topic.presence': 'You must select a topic'
+  'topic.presence': 'You must select a topic',
+
+  // topics
+  Mate: 'Mate',
+  Chess: 'Chess',
+  Football: 'Fobal'
 };

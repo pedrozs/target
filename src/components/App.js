@@ -31,7 +31,7 @@ const App = ({ authenticated, checked }) => (
     </ConnectedRouter>
     <ToastContainer
       hideProgressBar
-      position="top-center"
+      position="top-right"
     />
   </Fragment>
 );

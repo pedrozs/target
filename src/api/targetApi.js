@@ -7,6 +7,9 @@ class Target {
   static getTargets() {
     return api.get('targets');
   }
+  static deleteTarget(id) {
+    return api.delete(`targets/${id}`);
+  }
 }
 
 export default Target;
