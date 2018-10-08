@@ -10,22 +10,16 @@ const getTargetsSuccess = ({ targets }) => ({
   targets
 });
 
-const createTargetSuccess = ({ target }) => ({
-  type: types.CREATE_TARGET_SUCCESS,
-  target
-});
-
 export const getTargets = () => (dispatch) => {
   targetApi.getTargets()
     .then(targets => dispatch(getTargetsSuccess(targets)))
     .catch(() => toast.error('Could not retrieve targets'));
 };
 
-export const createTarget = target => (dispatch) => {
+export const createTarget = target => () => {
   history.push(routes.index);
   targetApi.createTarget(target)
-    .then((target) => {
-      dispatch(createTargetSuccess(target));
+    .then(() => {
       toast.success('Target created successfully');
     })
     .catch(({ errors }) => {
