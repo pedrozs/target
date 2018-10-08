@@ -28,12 +28,12 @@ const Input = ({
 );
 
 Input.propTypes = {
+  className: string,
   input: object.isRequired,
   label: string,
-  type: string.isRequired,
-  placeholder: string,
-  className: string,
   meta: object,
+  placeholder: string,
+  type: string.isRequired,
 };
 
 export default Input;

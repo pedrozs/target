@@ -1,10 +1,10 @@
 import React from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
-import { object, bool, func } from 'prop-types';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from 'react-google-maps';
+import { object, bool, func, array } from 'prop-types';
 
 import marker from '../../img/marker.svg';
 
-const Map = ({ handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
+const Map = ({ targets, handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
   <GoogleMap
     onClick={handleClick}
     defaultZoom={18}
@@ -16,11 +16,30 @@ const Map = ({ handleClick, isMarkerShown, coords: { latitude, longitude }, targ
         position={{ lat: latitude, lng: longitude }}
       />}
     {target &&
-      <Marker
-        icon={{ url: marker }}
-        position={{ lat: target.lat, lng: target.lng }}
-      />
+      <div>
+        <Marker
+          icon={{ url: marker }}
+          position={{ lat: target.lat, lng: target.lng }}
+        />
+        <Circle
+          center={{ lat: target.lat, lng: target.lng }}
+          radius={target.radius}
+        />
+      </div>
     }
+    {targets.map(({ target: { lat, lng, radius, id } }) => (
+      <div key={id} >
+        <Circle
+          options={{
+            strokeOpacity: '0',
+            fillOpacity: '.7',
+            fillColor: '#efc638'
+          }}
+          center={{ lat, lng }}
+          radius={radius}
+        />
+      </div>
+    ))}
   </GoogleMap>);
 
 Map.propTypes = {
@@ -28,6 +47,7 @@ Map.propTypes = {
   handleClick: func,
   isMarkerShown: bool,
   target: object,
+  targets: array,
 };
 
 export default withScriptjs(withGoogleMap(Map));

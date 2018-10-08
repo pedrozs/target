@@ -2,6 +2,8 @@ import { toast } from 'react-toastify';
 
 import * as types from './actionTypes';
 import targetApi from '../api/targetApi';
+import history from '../utils/history';
+import routes from '../constants/routesPaths';
 
 const getTargetsSuccess = ({ targets }) => ({
   type: types.GET_TARGETS_SUCCESS,
@@ -20,7 +22,15 @@ export const getTargets = () => (dispatch) => {
 };
 
 export const createTarget = target => (dispatch) => {
+  history.push(routes.index);
   targetApi.createTarget(target)
-    .then(target => dispatch(createTargetSuccess(target)))
-    .catch(() => toast.error('Target could not be created'));
+    .then((target) => {
+      dispatch(createTargetSuccess(target));
+      toast.success('Target created successfully');
+    })
+    .catch(({ errors }) => {
+      errors ?
+        toast.error(errors.targetsLimit[0]) :
+        toast.error('Netowrk unreachable');
+    });
 };

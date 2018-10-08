@@ -16,7 +16,7 @@ class HomePage extends React.Component {
     super(props);
     this.state = {
       coords: null,
-      target: null
+      target: null,
     };
   }
 
@@ -26,6 +26,12 @@ class HomePage extends React.Component {
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
       this.setState({ coords });
+    });
+  }
+
+  setTargetRadius = ({ target: { value } }) => {
+    this.setState({
+      target: { ...this.state.target, radius: Number(value) }
     });
   }
 
@@ -48,6 +54,7 @@ class HomePage extends React.Component {
           render={props => (
             <TargetForm
               {...props}
+              setTargetRadius={this.setTargetRadius}
               initialValues={this.state.target}
             />)}
         />
@@ -59,8 +66,9 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={!this.props.match.isExact ? this.state.target : null}
+            target={(this.props.location.pathname == '/create-target') ? this.state.target : null}
             coords={this.state.coords}
+            targets={this.props.targets}
           />
         }
       </div>
@@ -72,6 +80,7 @@ HomePage.propTypes = {
   edit: func,
   getTargets: func,
   getTopics: func,
+  location: object,
   match: object,
   subRoutes: array,
   targets: array,
@@ -79,6 +88,7 @@ HomePage.propTypes = {
 };
 
 const mapState = state => ({
+  targets: state.getIn(['target']).toJS(),
   username: state.getIn(['session', 'user', 'username']),
 });
 

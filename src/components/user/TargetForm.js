@@ -36,7 +36,7 @@ const topicsToJSON = topic => ({
   id: topic.topic.label
 });
 
-let TargetForm = ({ error, handleSubmit, submitting, intl, topics }) => {
+let TargetForm = ({ error, handleSubmit, submitting, intl, topics, setTargetRadius }) => {
   const topicList = topics.map(topicsToJSON);
   return (
     <div className="left-panel">
@@ -58,7 +58,8 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics }) => {
               component={Input}
               label={intl.formatMessage(messages.area)}
               name="radius"
-              type="text"
+              type="number"
+              onChange={setTargetRadius}
             />
           </div>
           <div>
@@ -97,10 +98,11 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics }) => {
 };
 
 TargetForm.propTypes = {
+  error: string,
   handleSubmit: func.isRequired,
   intl: intlShape.isRequired,
+  setTargetRadius: func,
   submitting: bool.isRequired,
-  error: string,
   topics: array,
 };
 
