@@ -32,7 +32,7 @@ const messages = defineMessages({
 
 const topicsToJSON = topic => ({
   value: topic.topic.id,
-  label: topic.topic.label
+  id: topic.topic.label
 });
 
 let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }) => {
