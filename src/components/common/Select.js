@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { FormattedMessage } from 'react-intl';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { parseInputErrors } from '../../utils/helpers';
 
 class SelectBox extends Component {
@@ -22,13 +22,20 @@ class SelectBox extends Component {
     onBlur && onBlur(value);
   }
 
+  formatOption = ({ value, id }) => (
+    {
+      value,
+      label: this.props.intl.formatMessage({ id })
+    }
+  )
+
   render() {
     const { className, classNamePrefix, input, label, placeholder, options, meta: { touched, error } } = this.props;
 
     return (
       <div>
         {label && <label className="input-label" htmlFor={input.name}>{label}</label>}
-        <div>
+        <div className={`${className}-container`}>
           <div className="error">
             {touched && error &&
               <FormattedMessage
@@ -39,7 +46,7 @@ class SelectBox extends Component {
           </div>
           <Select
             name={input.name}
-            options={options}
+            options={options.map(this.formatOption)}
             className={(touched && error) ? `${className} red-box` : className}
             classNamePrefix={classNamePrefix}
             placeholder={placeholder || false}
@@ -57,13 +64,14 @@ class SelectBox extends Component {
 const { string, object, array } = PropTypes;
 
 SelectBox.propTypes = {
-  input: object.isRequired,
-  label: string,
-  placeholder: string,
-  options: array,
-  meta: object,
   className: string,
-  classNamePrefix: string
+  classNamePrefix: string,
+  input: object.isRequired,
+  intl: object,
+  label: string,
+  meta: object,
+  options: array,
+  placeholder: string,
 };
 
-export default SelectBox;
+export default injectIntl(SelectBox);

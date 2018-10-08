@@ -10,6 +10,7 @@ import {
   FormattedMessage
 } from 'react-intl';
 
+import { gender } from '../../constants/constants';
 import Routes from '../../constants/routesPaths';
 import { editUser } from '../../actions/userActions';
 import { Loading, Input, SelectBox } from '../common';
@@ -27,85 +28,75 @@ const messages = defineMessages({
   gender: { id: 'signup.gender' },
   genderSelect: { id: 'signup.genderSelect' },
   success: { id: 'edit.success' },
-  male: { id: 'gender.male' },
-  female: { id: 'gender.female' },
-  other: { id: 'gender.other' }
+
 });
 
-let EditForm = ({ initialValues, handleSubmit, error, submitting, intl }) => {
-  const options = [
-    { value: 'male', label: intl.formatMessage(messages.male) },
-    { value: 'female', label: intl.formatMessage(messages.female) },
-    { value: 'other', label: intl.formatMessage(messages.other) }
-  ];
-  return (
-    <div className="left-panel">
-      <div className="top-left">
-        <Link to={Routes.index}>
-          <img src={close} alt="back" className="icon" />
-        </Link>
-      </div>
-      <div className="column">
-        <p className="target-title"><FormattedMessage id="edit.title" /></p>
-        <div className="top-pic" >
-          <img src={blueCircle} alt="blue" />
-          <img src={profilePic} alt="guy" />
-        </div>
-        <form className="form" onSubmit={handleSubmit}>
-          <p>{initialValues.toJS().username}</p>
-          {error && <strong>{error}</strong>}
-          <div>
-            <Field
-              name="email"
-              label={intl.formatMessage(messages.email)}
-              component={Input}
-              type="email"
-              className="input"
-            />
-          </div>
-          <div>
-            <Field
-              name="firstName"
-              label={intl.formatMessage(messages.firstName)}
-              component={Input}
-              type="text"
-              className="input"
-            />
-          </div>
-          <div>
-            <Field
-              name="lastName"
-              label={intl.formatMessage(messages.lastName)}
-              component={Input}
-              type="text"
-              className="input"
-            />
-          </div>
-          <div className="select-box">
-            <Field
-              name="gender"
-              label={intl.formatMessage(messages.gender)}
-              component={SelectBox}
-              type="text"
-              className="input"
-              classNamePrefix="react-select"
-              options={options}
-              isSearchable="false"
-              placeholder={intl.formatMessage(messages.genderSelect)}
-            />
-          </div>
-          <button className="input button" type="submit">
-            <FormattedMessage id="edit.submit" />
-          </button>
-          <div className="loading" >
-            {submitting && <Loading />}
-          </div>
-        </form>
-      </div>
-      <img className="bottom-smilies" src={smilies} alt="smilies" />
+let EditForm = ({ initialValues, handleSubmit, error, submitting, intl }) => (
+  <div className="left-panel">
+    <div className="top-left">
+      <Link to={Routes.index}>
+        <img src={close} alt="back" className="icon" />
+      </Link>
     </div>
-  );
-};
+    <div className="column">
+      <p className="target-title"><FormattedMessage id="edit.title" /></p>
+      <div className="top-pic" >
+        <img src={blueCircle} alt="blue" />
+        <img src={profilePic} alt="guy" />
+      </div>
+      <form className="form" onSubmit={handleSubmit}>
+        <p>{initialValues.toJS().username}</p>
+        {error && <strong>{error}</strong>}
+        <div>
+          <Field
+            name="email"
+            label={intl.formatMessage(messages.email)}
+            component={Input}
+            type="email"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="firstName"
+            label={intl.formatMessage(messages.firstName)}
+            component={Input}
+            type="text"
+            className="input"
+          />
+        </div>
+        <div>
+          <Field
+            name="lastName"
+            label={intl.formatMessage(messages.lastName)}
+            component={Input}
+            type="text"
+            className="input"
+          />
+        </div>
+        <div className="select-box">
+          <Field
+            name="gender"
+            label={intl.formatMessage(messages.gender)}
+            component={SelectBox}
+            type="text"
+            className="input"
+            classNamePrefix="react-select"
+            options={gender}
+            isSearchable="false"
+            placeholder={intl.formatMessage(messages.genderSelect)}
+          />
+        </div>
+        <button className="input button" type="submit">
+          <FormattedMessage id="edit.submit" />
+        </button>
+        <div className="loading" >
+          {submitting && <Loading />}
+        </div>
+      </form>
+    </div>
+    <img className="bottom-smilies" src={smilies} alt="smilies" />
+  </div>);
 
 EditForm.propTypes = {
   handleSubmit: func.isRequired,
