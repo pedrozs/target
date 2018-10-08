@@ -1,10 +1,10 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from 'react-google-maps';
-import { object, bool, func, array } from 'prop-types';
+import { object, bool, func, array, number } from 'prop-types';
 
 import marker from '../../img/marker.svg';
 
-const Map = ({ targets, handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
+const Map = ({ selectedTarget, selectTarget, targets, handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
   <GoogleMap
     onClick={handleClick}
     defaultZoom={18}
@@ -27,11 +27,12 @@ const Map = ({ targets, handleClick, isMarkerShown, coords: { latitude, longitud
         />
       </div>
     }
-    {targets.map(({ target: { lat, lng, radius, id } }) => (
+    {targets.map(({ target: { lat, lng, radius, id } }, index) => (
       <div key={id} >
         <Circle
+          onClick={() => selectTarget(index)}
           options={{
-            strokeOpacity: '0',
+            strokeOpacity: (selectedTarget == index) ? '1' : '0',
             fillOpacity: '.7',
             fillColor: '#efc638'
           }}
@@ -46,6 +47,8 @@ Map.propTypes = {
   coords: object,
   handleClick: func,
   isMarkerShown: bool,
+  selectTarget: func,
+  selectedTarget: number,
   target: object,
   targets: array,
 };
