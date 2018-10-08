@@ -5,7 +5,6 @@ import SignUpPage from './containers/SignUpPage';
 import NotFoundPage from './containers/NotFoundPage';
 import Menu from './components/common/Menu';
 import EditForm from './components/user/EditForm';
-import TargetForm from './components/user/TargetForm';
 
 const routes = [
   {
@@ -29,10 +28,6 @@ const routes = [
       {
         path: routesPaths.editUser,
         component: EditForm,
-      },
-      {
-        path: routesPaths.newTarget,
-        component: TargetForm
       }
     ]
   },
