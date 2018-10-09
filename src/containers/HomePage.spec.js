@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { fromJS } from 'immutable';
-import nock from 'nock';
+// import nock from 'nock';
 
 import HomePage from './HomePage';
 import configureStore from '../store/configureStore';
