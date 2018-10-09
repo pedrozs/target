@@ -69,7 +69,7 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={(location.pathname == '/create-target') ? target : null}
+            target={(location.pathname == routes.newTarget) ? target : null}
             coords={coords}
             targets={targets}
           />
