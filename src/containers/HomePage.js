@@ -90,11 +90,26 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
+<<<<<<< HEAD
             target={(location.pathname == routes.newTarget) ? target : null}
+=======
+<<<<<<< HEAD
+            target={(location.pathname == '/create-target') ? target : null}
+>>>>>>> 74f852266ec42aff32a1ede7597a917aec6bec32
             coords={coords}
             targets={targets}
             selectTarget={this.selectTarget}
             selectedTarget={selectedTarget}
+<<<<<<< HEAD
+=======
+=======
+            target={(this.props.location.pathname == '/create-target') ? this.state.target : null}
+            coords={this.state.coords}
+            targets={this.props.targets}
+            selectTarget={this.selectTarget}
+            selectedTarget={this.state.selectedTarget}
+>>>>>>> ca461dda7bec0478d125c3a6bceee625009178e3
+>>>>>>> 74f852266ec42aff32a1ede7597a917aec6bec32
           />
         }
       </div>
