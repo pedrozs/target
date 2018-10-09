@@ -21,8 +21,9 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getTopics();
-    this.props.getTargets();
+    const { getTopics, getTargets } = this.props;
+    getTopics();
+    getTargets();
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
       this.setState({ coords });
@@ -43,10 +44,12 @@ class HomePage extends React.Component {
   }
 
   render() {
+    const { location, subRoutes, targets } = this.props;
+    const { target, coords } = this.state;
     return (
       <div className="home-page">
         {/* propless routes */}
-        {this.props.subRoutes && this.props.subRoutes.map((route, index) =>
+        {subRoutes && subRoutes.map((route, index) =>
           <RouteFromPath key={index} {...route} />)}
         {/* routes with props */}
         <RouteFromPath
@@ -55,7 +58,7 @@ class HomePage extends React.Component {
             <TargetForm
               {...props}
               setTargetRadius={this.setTargetRadius}
-              initialValues={this.state.target}
+              initialValues={target}
             />)}
         />
         {this.state.coords &&
@@ -66,9 +69,9 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={(this.props.location.pathname == '/create-target') ? this.state.target : null}
-            coords={this.state.coords}
-            targets={this.props.targets}
+            target={(location.pathname == '/create-target') ? target : null}
+            coords={coords}
+            targets={targets}
           />
         }
       </div>

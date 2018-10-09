@@ -3,6 +3,7 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, Circle } from 'react-go
 import { object, bool, func, array } from 'prop-types';
 
 import marker from '../../img/marker.svg';
+import { macCheeseColor } from '../../constants/constants';
 
 const Map = ({ targets, handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
   <GoogleMap
@@ -33,7 +34,7 @@ const Map = ({ targets, handleClick, isMarkerShown, coords: { latitude, longitud
           options={{
             strokeOpacity: '0',
             fillOpacity: '.7',
-            fillColor: '#efc638'
+            fillColor: macCheeseColor
           }}
           center={{ lat, lng }}
           radius={radius}

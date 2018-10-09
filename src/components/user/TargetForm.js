@@ -79,7 +79,7 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, setTargetRadi
                 classNamePrefix="react-select"
                 component={SelectBox}
                 label={intl.formatMessage(messages.topic)}
-                name="topic_id"
+                name="topicId"
                 options={topicList}
                 type="text"
               />}
