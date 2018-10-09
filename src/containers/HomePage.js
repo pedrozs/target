@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { string, func, array, object } from 'prop-types';
 
+import TargetForm from '../components/user/TargetForm';
 import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
 import { getTopics } from '../actions/topicActions';
+import { getTargets } from '../actions/targetActions';
 import Map from '../components/common/Map';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
@@ -14,15 +16,23 @@ class HomePage extends React.Component {
     super(props);
     this.state = {
       coords: null,
-      target: null
+      target: null,
     };
   }
 
   componentDidMount() {
-    this.props.getTopics();
+    const { getTopics, getTargets } = this.props;
+    getTopics();
+    getTargets();
     navigator.geolocation.getCurrentPosition((position) => {
       const { coords } = position;
       this.setState({ coords });
+    });
+  }
+
+  setTargetRadius = ({ target: { value } }) => {
+    this.setState({
+      target: { ...this.state.target, radius: Number(value) }
     });
   }
 
@@ -30,14 +40,27 @@ class HomePage extends React.Component {
     this.setState({
       target: { lat: latLng.lat(), lng: latLng.lng() }
     });
-    history.push(routes.newTarget);
+    if (this.props.match.isExact) history.push(routes.newTarget);
   }
 
   render() {
+    const { location, subRoutes, targets } = this.props;
+    const { target, coords } = this.state;
     return (
       <div className="home-page">
-        {this.props.subRoutes && this.props.subRoutes.map((route, index) =>
+        {/* propless routes */}
+        {subRoutes && subRoutes.map((route, index) =>
           <RouteFromPath key={index} {...route} />)}
+        {/* routes with props */}
+        <RouteFromPath
+          path={routes.newTarget}
+          render={props => (
+            <TargetForm
+              {...props}
+              setTargetRadius={this.setTargetRadius}
+              initialValues={target}
+            />)}
+        />
         {this.state.coords &&
           <Map
             isMarkerShown
@@ -46,8 +69,9 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={!this.props.match.isExact ? this.state.target : null}
-            coords={this.state.coords}
+            target={(location.pathname == routes.newTarget) ? target : null}
+            coords={coords}
+            targets={targets}
           />
         }
       </div>
@@ -56,18 +80,23 @@ class HomePage extends React.Component {
 }
 
 HomePage.propTypes = {
-  username: string,
   edit: func,
-  subRoutes: array,
+  getTargets: func,
   getTopics: func,
-  match: object
+  location: object,
+  match: object,
+  subRoutes: array,
+  targets: array,
+  username: string,
 };
 
 const mapState = state => ({
+  targets: state.getIn(['target']).toJS(),
   username: state.getIn(['session', 'user', 'username']),
 });
 
 const mapDispatch = dispatch => ({
+  getTargets: () => dispatch(getTargets()),
   getTopics: () => dispatch(getTopics())
 });
 

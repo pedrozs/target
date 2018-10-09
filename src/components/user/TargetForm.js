@@ -11,6 +11,7 @@ import {
 } from 'react-intl';
 
 import { getTopics } from '../../actions/topicActions';
+import { createTarget } from '../../actions/targetActions';
 import Routes from '../../constants/routesPaths';
 import { Loading, Input, SelectBox } from '../common';
 import { validations, target } from '../../utils/constraints';
@@ -35,12 +36,12 @@ const topicsToJSON = topic => ({
   id: topic.topic.label
 });
 
-let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }) => {
+let TargetForm = ({ error, handleSubmit, submitting, intl, topics, setTargetRadius }) => {
   const topicList = topics.map(topicsToJSON);
   return (
     <div className="left-panel">
       <div className="top-left">
-        <Link onClick={eraseTarget} to={Routes.index}>
+        <Link to={Routes.index}>
           <img src={close} alt="back" className="icon" />
         </Link>
       </div>
@@ -57,7 +58,8 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }
               component={Input}
               label={intl.formatMessage(messages.area)}
               name="radius"
-              type="text"
+              type="number"
+              onChange={setTargetRadius}
             />
           </div>
           <div>
@@ -77,7 +79,7 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }
                 classNamePrefix="react-select"
                 component={SelectBox}
                 label={intl.formatMessage(messages.topic)}
-                name="topic"
+                name="topicId"
                 options={topicList}
                 type="text"
               />}
@@ -96,12 +98,12 @@ let TargetForm = ({ error, handleSubmit, submitting, intl, topics, eraseTarget }
 };
 
 TargetForm.propTypes = {
+  error: string,
   handleSubmit: func.isRequired,
   intl: intlShape.isRequired,
+  setTargetRadius: func,
   submitting: bool.isRequired,
-  error: string,
   topics: array,
-  eraseTarget: func,
 };
 
 TargetForm = reduxForm({
@@ -114,6 +116,7 @@ const mapStore = store => ({
 });
 
 const mapDispatch = dispatch => ({
+  onSubmit: target => dispatch(createTarget(target.toJS())),
   getTopics: () => dispatch(getTopics()),
 });
 

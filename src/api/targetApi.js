@@ -5,7 +5,7 @@ class Target {
     return api.post('targets', { target });
   }
   static getTargets() {
-    return api.get('targets', { page: 1 });
+    return api.get('targets');
   }
 }
 
