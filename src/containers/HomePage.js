@@ -50,7 +50,7 @@ class HomePage extends React.Component {
     this.props.deleteTarget({ id: selectedTargetID, index: this.state.selectedTarget });
     this.setState({
       selectedTarget: null
-    })
+    });
   }
 
   mapClick = ({ latLng }) => {
