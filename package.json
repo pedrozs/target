@@ -34,6 +34,7 @@
   "author": "Bernabe Gonzalez",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-transform-class-properties": "6.24.1",
     "foundation-sites": "6.4.4-rc1",
     "history": "4.7.2",
     "humps": "2.0.1",
@@ -133,7 +134,8 @@
       "\\.(css|scss)$": "identity-obj-proxy",
       "^.+\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$": "<rootDir>/tools/fileMock.js"
     },
-    "setupTestFrameworkScriptFile": "<rootDir>/tools/testSetup.js"
+    "setupTestFrameworkScriptFile": "<rootDir>/tools/testSetup.js",
+    "testURL": "http://localhost"
   },
   "keywords": [
     "react",

@@ -7,8 +7,8 @@ import locales from '../locales';
 
 const messages = locales.en;
 
-export const withStore = (WrappedComponent, store) => (
-  <MemoryRouter>
+export const withStore = (WrappedComponent, store, route) => (
+  <MemoryRouter initialEntries={[route]}>
     <IntlProvider locale="en" messages={messages}>
       <Provider store={store}>
         {WrappedComponent}
