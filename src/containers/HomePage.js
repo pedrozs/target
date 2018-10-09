@@ -26,10 +26,14 @@ class HomePage extends React.Component {
     const { getTopics, getTargets } = this.props;
     getTopics();
     getTargets();
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { coords } = position;
-      this.setState({ coords });
-    });
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { coords } = position;
+        this.setState({ coords });
+      });
+    } else {
+      this.setState({ coords: { lat: -34.901112, lng: -56.164532 } });
+    }
   }
 
   setTargetRadius = ({ target: { value } }) => {
@@ -50,7 +54,7 @@ class HomePage extends React.Component {
     this.props.deleteTarget({ id: selectedTargetID, index: this.state.selectedTarget });
     this.setState({
       selectedTarget: null
-    })
+    });
   }
 
   mapClick = ({ latLng }) => {
@@ -90,19 +94,11 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-<<<<<<< HEAD
             target={(location.pathname == '/create-target') ? target : null}
             coords={coords}
             targets={targets}
             selectTarget={this.selectTarget}
             selectedTarget={selectedTarget}
-=======
-            target={(this.props.location.pathname == '/create-target') ? this.state.target : null}
-            coords={this.state.coords}
-            targets={this.props.targets}
-            selectTarget={this.selectTarget}
-            selectedTarget={this.state.selectedTarget}
->>>>>>> ca461dda7bec0478d125c3a6bceee625009178e3
           />
         }
       </div>

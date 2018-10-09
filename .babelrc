@@ -12,7 +12,15 @@
     "production": {
       "plugins": [
         "transform-react-constant-elements",
-        "transform-react-remove-prop-types"
+        "transform-react-remove-prop-types",
+        "transform-class-properties"
+      ]
+    },
+    "test": {
+      "plugins": [
+        "transform-react-constant-elements",
+        "transform-react-remove-prop-types",
+        "transform-class-properties",
       ]
     }
   }
