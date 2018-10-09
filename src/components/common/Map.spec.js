@@ -11,6 +11,7 @@ import { withStore } from '../../utils/testHelpers';
 
 describe('<Map />', () => {
   let store;
+  let container;
   let subject;
 
   beforeEach(() => {
@@ -31,14 +32,15 @@ describe('<Map />', () => {
       hash: '',
       key: '9kzkus'
     };
-    subject = mount(withStore(<HomePage location={location} />, store, location));
+    container = mount(withStore(<HomePage location={location} />, store, location));
+    subject = container.find(Map);
 
     nock(process.env.API_URL)
       .get('targets')
       .reply(200, {"targets":[{"target":{"id":978,"title":"lol","lat":-34.9083356452463,"lng":-56.1983425222957,"radius":50.0,"topic_id":11}},{"target":{"id":979,"title":"lol","lat":-34.9047282294338,"lng":-56.2039644323909,"radius":40.0,"topic_id":11}},{"target":{"id":980,"title":"Peter","lat":-34.9044199352015,"lng":-56.1999325378204,"radius":100.0,"topic_id":2}}]});
   });
-  it('Should render 3 targets', () => {
-    const targets = subject.find(GoogleMap);
-    expect(targets).toHaveLength(1);
+  it('Should render a GoogleMap', () => {
+    const googleMap = container.find(GoogleMap);
+    expect(googleMap).toHaveLength(1);
   });
 });
