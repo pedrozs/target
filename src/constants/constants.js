@@ -11,5 +11,3 @@ export const gender = [
   { value: 'female', id: 'gender.female' },
   { value: 'other', id: 'gender.other' }
 ];
-
-export const macCheeseColor = '#efc638';
