@@ -55,12 +55,12 @@ const getResponseBody = (response) => {
 };
 
 class Api {
-  performRequest(uri, apiUrl, requestData = {}, del = false) {
+  performRequest(uri, apiUrl, requestData = {}, isDelete = false) {
     const url = `${apiUrl}${uri}`;
     return new Promise((resolve, reject) => {
       fetch(url, requestData)
         .then(handleErrors)
-        .then(!del ? getResponseBody : empty)
+        .then(!isDelete ? getResponseBody : empty)
         .then(response => resolve(humps.camelizeKeys(response)))
         .catch(error => reject(humps.camelizeKeys(error)));
     });
