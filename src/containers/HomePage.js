@@ -66,7 +66,7 @@ class HomePage extends React.Component {
     const { target, coords, selectedTarget } = this.state;
     return (
       <div className="home-page">
-        {this.state.selectedTarget != undefined &&
+        {selectedTarget != undefined &&
           <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
         }
         {/* propless routes */}
