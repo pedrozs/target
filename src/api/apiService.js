@@ -45,7 +45,6 @@ const handleErrors = response =>
   });
 
 const getResponseBody = (response) => {
-  console.log(response.body);
   const bodyIsEmpty = (response.status === 204);
   if (bodyIsEmpty) {
     return Promise.resolve();

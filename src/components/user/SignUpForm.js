@@ -24,7 +24,7 @@ const messages = defineMessages({
   genderSelect: { id: 'signup.genderSelect' },
 });
 
-const signupForm = ({ error, handleSubmit, submitting, intl }) => (
+export const SignUpForm = ({ error, handleSubmit, submitting, intl }) => (
   <div className="signup-form">
     <div className="top-left">
       <img src={menu} alt="menu" className="icon" />
@@ -97,7 +97,7 @@ const signupForm = ({ error, handleSubmit, submitting, intl }) => (
     </form>
   </div>);
 
-signupForm.propTypes = {
+SignUpForm.propTypes = {
   handleSubmit: func.isRequired,
   submitting: bool.isRequired,
   intl: intlShape.isRequired,
@@ -107,4 +107,4 @@ signupForm.propTypes = {
 export default reduxForm({
   form: 'signUp',
   validate: validations(signUp, { fullMessages: false })
-})(injectIntl(signupForm));
+})(injectIntl(SignUpForm));

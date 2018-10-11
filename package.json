@@ -35,6 +35,7 @@
   "license": "MIT",
   "dependencies": {
     "babel-plugin-transform-class-properties": "6.24.1",
+    "faker": "4.1.0",
     "foundation-sites": "6.4.4-rc1",
     "history": "4.7.2",
     "humps": "2.0.1",
