@@ -5,13 +5,15 @@ import { sessionImmutableReducer as session } from 'redux-react-session';
 import topics from './topicReducer';
 import router from './routerReducer';
 import target from './targetReducer';
+import conversations from './conversationsReducer';
 
 const rootReducer = combineReducers({
+  conversations,
   form,
-  session,
   router,
-  topics,
-  target
+  session,
+  target,
+  topics
 });
 
 export default rootReducer;

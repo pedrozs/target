@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 
+import { getConversations } from './conversationsActions';
 import * as types from './actionTypes';
 import targetApi from '../api/targetApi';
 import history from '../utils/history';
@@ -17,7 +18,9 @@ const deleteTargetSuccess = index => ({
 
 export const getTargets = () => (dispatch) => {
   targetApi.getTargets()
-    .then(targets => dispatch(getTargetsSuccess(targets)))
+    .then((targets) => {
+      dispatch(getTargetsSuccess(targets));
+    })
     .catch(() => toast.error('Could not retrieve targets'));
 };
 
@@ -26,6 +29,7 @@ export const createTarget = target => (dispatch) => {
   targetApi.createTarget(target)
     .then(() => {
       dispatch(getTargets());
+      dispatch(getConversations());
       toast.success('Target created successfully');
     })
     .catch(({ errors }) => {
@@ -39,6 +43,7 @@ export const deleteTarget = ({ id, index }) => (dispatch) => {
   targetApi.deleteTarget(id)
     .then(() => {
       dispatch(deleteTargetSuccess(index));
+      dispatch(getConversations());
       toast.success('Target deleted succesfully');
     }).catch();
 };

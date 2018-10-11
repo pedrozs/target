@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, string } from 'prop-types';
+import { func, string, array } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -10,7 +10,18 @@ import profilePic from '../../img/guy.svg';
 import blueCircle from '../../img/blue-circle.svg';
 import routes from '../../constants/routesPaths';
 
-const Menu = ({ logout, username }) => (
+const conversationToHTML = conversation => (
+  <div> {conversation.user.fullName} </div>
+);
+
+const iff = (condition, then, otherwise) => {
+  if (condition) {
+    return then
+  }
+  return otherwise
+}
+
+const Menu = ({ logout, username, conversations, targets }) => (
   <div className="left-panel">
     <div className="column">
       <p className="target-title"><FormattedMessage id="home.title" /></p>
@@ -25,16 +36,27 @@ const Menu = ({ logout, username }) => (
         <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
       </p>
       <div className="separator" />
-      <p className="target-slogan center">
-        <FormattedMessage id="home.firstTarget" />
-      </p>
+      { (targets.length == 0) ?
+        <p className="target-slogan center">
+          <FormattedMessage id="home.firstTarget" />
+        </p> :
+        iff(
+          (conversations.length == 0),
+          <p className="target-slogan center">
+            NO matches yet!
+          </p>,
+          conversations.map(conversationToHTML)
+        )
+      }
     </div>
     <img className="bottom-smilies" src={smilies} alt="smilies" />
   </div>
 );
 
 const mapState = state => ({
-  username: state.getIn(['session', 'user', 'username'])
+  username: state.getIn(['session', 'user', 'username']),
+  conversations: state.getIn(['conversations']).toJS(),
+  targets: state.getIn(['target']).toJS(),
 });
 
 const mapDispatch = dispatch => ({
@@ -44,6 +66,8 @@ const mapDispatch = dispatch => ({
 Menu.propTypes = {
   logout: func.isRequired,
   username: string,
+  conversations: array,
+  targets: array
 };
 
 export default connect(mapState, mapDispatch)(Menu);

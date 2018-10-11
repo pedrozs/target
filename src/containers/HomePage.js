@@ -8,6 +8,7 @@ import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
 import { getTopics } from '../actions/topicActions';
 import { getTargets, deleteTarget } from '../actions/targetActions';
+import { getConversations } from '../actions/conversationsActions';
 import Map from '../components/common/Map';
 import { MAPS_API } from '../constants/constants';
 import routes from '../constants/routesPaths';
@@ -23,7 +24,8 @@ class HomePage extends React.Component {
   }
 
   componentDidMount() {
-    const { getTopics, getTargets } = this.props;
+    const { getTopics, getTargets, getConversations } = this.props;
+    getConversations();
     getTopics();
     getTargets();
     if ('geolocation' in navigator) {
@@ -59,7 +61,7 @@ class HomePage extends React.Component {
 
   mapClick = ({ latLng }) => {
     this.setState({
-      target: { lat: latLng.lat(), lng: latLng.lng() },
+      target: { ...this.state.target, lat: latLng.lat(), lng: latLng.lng() },
       selectedTarget: null
     });
     if (this.props.match.isExact) history.push(routes.newTarget);
@@ -110,6 +112,7 @@ HomePage.propTypes = {
   edit: func,
   getTargets: func,
   getTopics: func,
+  getConversations: func,
   location: object,
   match: object,
   subRoutes: array,
@@ -126,6 +129,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getTargets: () => dispatch(getTargets()),
   getTopics: () => dispatch(getTopics()),
+  getConversations: () => dispatch(getConversations()),
   deleteTarget: target => dispatch(deleteTarget(target)),
 });
 
