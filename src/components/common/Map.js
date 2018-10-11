@@ -5,7 +5,15 @@ import { object, bool, func, array, number } from 'prop-types';
 import marker from '../../img/marker.svg';
 import { macCheeseColor, white } from '../../constants/styleConstants';
 
-const Map = ({ selectedTarget, selectTarget, targets, handleClick, isMarkerShown, coords: { latitude, longitude }, target }) => (
+const Map = ({
+  selectedTarget,
+  selectTarget,
+  targets,
+  handleClick,
+  isMarkerShown,
+  coords: { latitude, longitude },
+  target
+}) => (
   <GoogleMap
     onClick={handleClick}
     defaultZoom={18}
