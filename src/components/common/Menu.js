@@ -4,22 +4,22 @@ import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import Conversation from './Conversation';
 import { logout } from '../../actions/sessionActions';
 import smilies from '../../img/smilies.svg';
 import profilePic from '../../img/guy.svg';
 import blueCircle from '../../img/blue-circle.svg';
 import routes from '../../constants/routesPaths';
 
-const conversationToHTML = conversation => (
-  <div> {conversation.user.fullName} </div>
-);
-
-const iff = (condition, then, otherwise) => {
-  if (condition) {
-    return then
+const renderConversations = (conversations) => {
+  if (conversations.length) {
+    return conversations.map((conversation, index) => <Conversation key={index} conversation={conversation} />);
   }
-  return otherwise
-}
+  return (
+    <p className="target-slogan center">
+      NO matches yet!
+    </p>);
+};
 
 const Menu = ({ logout, username, conversations, targets }) => (
   <div className="left-panel">
@@ -39,14 +39,7 @@ const Menu = ({ logout, username, conversations, targets }) => (
       { (targets.length == 0) ?
         <p className="target-slogan center">
           <FormattedMessage id="home.firstTarget" />
-        </p> :
-        iff(
-          (conversations.length == 0),
-          <p className="target-slogan center">
-            NO matches yet!
-          </p>,
-          conversations.map(conversationToHTML)
-        )
+        </p> : renderConversations(conversations)
       }
     </div>
     <img className="bottom-smilies" src={smilies} alt="smilies" />

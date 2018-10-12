@@ -61,7 +61,7 @@ class HomePage extends React.Component {
 
   mapClick = ({ latLng }) => {
     this.setState({
-      target: { ...this.state.target, lat: latLng.lat(), lng: latLng.lng() },
+      target: { lat: latLng.lat(), lng: latLng.lng() },
       selectedTarget: null
     });
     if (this.props.match.isExact) history.push(routes.newTarget);
@@ -72,7 +72,7 @@ class HomePage extends React.Component {
     const { target, coords, selectedTarget } = this.state;
     return (
       <div className="home-page">
-        {this.state.selectedTarget != undefined &&
+        {selectedTarget != undefined &&
           <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
         }
         {/* propless routes */}
@@ -96,7 +96,7 @@ class HomePage extends React.Component {
             containerElement={<div className="maps-container" />}
             mapElement={<div className="google-maps" />}
             handleClick={this.mapClick}
-            target={(location.pathname == '/create-target') ? target : null}
+            target={(location.pathname == routes.newTarget) ? target : null}
             coords={coords}
             targets={targets}
             selectTarget={this.selectTarget}
@@ -110,9 +110,9 @@ class HomePage extends React.Component {
 
 HomePage.propTypes = {
   edit: func,
+  getConversations: func,
   getTargets: func,
   getTopics: func,
-  getConversations: func,
   location: object,
   match: object,
   subRoutes: array,
@@ -127,10 +127,10 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
+  deleteTarget: target => dispatch(deleteTarget(target)),
+  getConversations: () => dispatch(getConversations()),
   getTargets: () => dispatch(getTargets()),
   getTopics: () => dispatch(getTopics()),
-  getConversations: () => dispatch(getConversations()),
-  deleteTarget: target => dispatch(deleteTarget(target)),
 });
 
 export default connect(mapState, mapDispatch)(HomePage);
