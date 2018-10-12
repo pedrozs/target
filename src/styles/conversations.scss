@@ -1,10 +1,8 @@
-.conversations {
-  width: 100%;
-}
-
 .conversation {
+  border-bottom: gray 2px solid;
   position: relative;
   width: 100%;
+  padding: 1rem;
 
   .unread-messages {
     position: absolute;
