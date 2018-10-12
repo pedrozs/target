@@ -4,6 +4,7 @@
 @import 'loginSignupPage.scss';
 @import 'homePage.scss';
 @import 'reactSelect.scss';
+@import 'conversations.scss';
 
 body,
 html {
@@ -26,6 +27,26 @@ html {
   // These two classes are required by react-loaders
   .loader-hidden { display: none; }
   .loader-active { display: block; }
+}
+
+.column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hl {
+  background-color: gray;
+  height: 2px;
+  width: 100%;
 }
 
 .delete-target {
