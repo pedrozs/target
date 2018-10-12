@@ -3,7 +3,8 @@ const routes = {
   login: '/login',
   signUp: '/sign-up',
   editUser: '/account',
-  newTarget: '/create-target'
+  newTarget: '/create-target',
+  chat: '/chat'
 };
 
 export default routes;

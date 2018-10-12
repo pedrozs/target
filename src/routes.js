@@ -5,6 +5,7 @@ import SignUpPage from './containers/SignUpPage';
 import NotFoundPage from './containers/NotFoundPage';
 import Menu from './components/common/Menu';
 import EditForm from './components/user/EditForm';
+import Chat from './components/user/Chat';
 
 const routes = [
   {
@@ -28,6 +29,11 @@ const routes = [
       {
         path: routesPaths.editUser,
         component: EditForm,
+      },
+      {
+        path: routesPaths.chat,
+        component: Chat,
+        exact: false
       }
     ]
   },
