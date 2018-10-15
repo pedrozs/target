@@ -7,7 +7,6 @@ import profilePic from '../../img/guy.svg';
 
 const Conversation = ({ conversation }) => (
   <Link className="row conversation" to={`${routes.chat}/${conversation.matchId}`} >
-    {console.log(conversation.matchId)}
     {conversation.unreadMessages != 0 &&
       <div className="unread-messages">{conversation.unreadMessages}</div>
     }

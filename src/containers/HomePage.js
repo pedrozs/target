@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { string, func, array, object } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
+import { ActionCableProvider } from 'react-actioncable-provider';
 
 import TargetForm from '../components/user/TargetForm';
 import RouteFromPath from '../components/routes/RouteFromPath';
@@ -72,9 +73,11 @@ class HomePage extends React.Component {
     const { target, coords, selectedTarget } = this.state;
     return (
       <div className="home-page">
-        {selectedTarget != undefined &&
-          <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
-        }
+        <ActionCableProvider url={process.env.API_WS_URL}>
+          {selectedTarget != undefined &&
+            <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
+          }
+        </ActionCableProvider>
         {/* propless routes */}
         {subRoutes && subRoutes.map((route, index) =>
           <RouteFromPath key={index} {...route} />)}
