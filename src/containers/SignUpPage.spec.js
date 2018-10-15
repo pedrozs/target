@@ -70,7 +70,6 @@ describe('<SignUpPage />', () => {
 
     sessionService.saveUser = jest.fn(() => Promise.resolve());
     sessionService.saveSession = jest.fn(() => Promise.resolve());
-    // sessionService.loadSession = jest.fn(() => Promise.reject('Session not found'));
   });
 
   it('should display a username input', () => {
@@ -104,9 +103,9 @@ describe('<SignUpPage />', () => {
       password.simulate('change', { target: { value: fakeAccount.user.password } });
       passwordConfirmation.simulate('change', { target: { value: fakeAccount.user.password } });
       gender.simulate('change', { target: { value: fakeAccount.user.gender } });
-      const inp = gender.find('input').at(0);
-      inp.simulate('change', { target: { value: fakeAccount.user.gender } });
-      inp.simulate('keyDown', { keyCode: 13, key: 'Enter' });
+      const genderInput = gender.find('input').at(0);
+      genderInput.simulate('change', { target: { value: fakeAccount.user.gender } });
+      genderInput.simulate('keyDown', { keyCode: 13, key: 'Enter' });
       form.simulate('submit');
     });
 

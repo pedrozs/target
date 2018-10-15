@@ -1,9 +1,10 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { fromJS } from 'immutable';
-// import nock from 'nock';
 
+import Routes from '../routes';
 import HomePage from './HomePage';
+import Map from '../components/common/Map';
 import configureStore from '../store/configureStore';
 import { withStore } from '../utils/testHelpers';
 
@@ -29,10 +30,18 @@ describe('<HomePage />', () => {
       hash: '',
       key: '9kzkus'
     };
-    subject = mount(withStore(<HomePage location={location} />, store, location));
+    subject = mount(withStore(<HomePage subRoutes={Routes[2].subRoutes} location={location} />, store, location));
   });
 
-  it('should render a div', () => {
+  it('should render a cointainer div with "home-page" class name', () => {
     expect(subject.find('div').get(0).props.className).toEqual('home-page');
+  });
+
+  it('should render a Map component', () => {
+    expect(subject.find(Map)).toHaveLength(1);
+  });
+
+  it('should render a left panel', () => {
+    expect(subject.find('.left-panel')).toHaveLength(1);
   });
 });
