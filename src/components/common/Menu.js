@@ -11,9 +11,10 @@ import profilePic from '../../img/guy.svg';
 import blueCircle from '../../img/blue-circle.svg';
 import routes from '../../constants/routesPaths';
 
-const renderConversations = (conversations) => {
+const renderConversations = (conversations, handleClick) => {
+  const onClick = (handleClick, index) => () => handleClick(index);
   if (conversations.length) {
-    return conversations.map((conversation, index) => <Conversation key={index} conversation={conversation} />);
+    return conversations.map((conversation, index) => <Conversation onClick={onClick(handleClick, index)} key={index} conversation={conversation} />);
   }
   return (
     <p className="target-slogan center">
@@ -21,7 +22,7 @@ const renderConversations = (conversations) => {
     </p>);
 };
 
-const Menu = ({ logout, username, conversations, targets }) => (
+const Menu = ({ logout, username, conversations, targets, setActiveConversation }) => (
   <div className="left-panel">
     <div className="column">
       <p className="target-title"><FormattedMessage id="home.title" /></p>
@@ -39,7 +40,7 @@ const Menu = ({ logout, username, conversations, targets }) => (
       { (targets.length == 0) ?
         <p className="target-slogan center">
           <FormattedMessage id="home.firstTarget" />
-        </p> : renderConversations(conversations)
+        </p> : renderConversations(conversations, setActiveConversation)
       }
     </div>
     <img className="bottom-smilies" src={smilies} alt="smilies" />
@@ -60,7 +61,8 @@ Menu.propTypes = {
   logout: func.isRequired,
   username: string,
   conversations: array,
-  targets: array
+  targets: array,
+  setActiveConversation: func
 };
 
 export default connect(mapState, mapDispatch)(Menu);

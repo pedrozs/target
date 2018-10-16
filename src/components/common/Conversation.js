@@ -1,12 +1,12 @@
 import React from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import routes from '../../constants/routesPaths';
 import profilePic from '../../img/guy.svg';
 
-const Conversation = ({ conversation }) => (
-  <Link className="row conversation" to={`${routes.chat}/${conversation.matchId}`} >
+const Conversation = ({ conversation, onClick }) => (
+  <Link onClick={onClick} className="row conversation" to={routes.chat} >
     {conversation.unreadMessages != 0 &&
       <div className="unread-messages">{conversation.unreadMessages}</div>
     }
@@ -20,7 +20,8 @@ const Conversation = ({ conversation }) => (
 );
 
 Conversation.propTypes = {
-  conversation: object
+  conversation: object,
+  onClick: func
 };
 
 export default Conversation;

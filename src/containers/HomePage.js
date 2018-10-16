@@ -4,6 +4,8 @@ import { string, func, array, object } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { ActionCableProvider } from 'react-actioncable-provider';
 
+import Menu from '../components/common/Menu';
+import Chat from '../components/user/Chat';
 import TargetForm from '../components/user/TargetForm';
 import RouteFromPath from '../components/routes/RouteFromPath';
 import history from '../utils/history';
@@ -21,6 +23,7 @@ class HomePage extends React.Component {
       coords: null,
       target: null,
       selectedTarget: null,
+      activeConversation: null
     };
   }
 
@@ -45,18 +48,9 @@ class HomePage extends React.Component {
     });
   }
 
-  selectTarget = (index) => {
-    if (!this.props.match.isExact) history.push(routes.index);
+  setActiveConversation = (index) => {
     this.setState({
-      selectedTarget: index,
-    });
-  }
-
-  deleteSelectedTarget = () => {
-    const selectedTargetID = this.props.targets[this.state.selectedTarget].target.id;
-    this.props.deleteTarget({ id: selectedTargetID, index: this.state.selectedTarget });
-    this.setState({
-      selectedTarget: null
+      activeConversation: index
     });
   }
 
@@ -68,19 +62,34 @@ class HomePage extends React.Component {
     if (this.props.match.isExact) history.push(routes.newTarget);
   }
 
+  deleteSelectedTarget = () => {
+    const selectedTargetID = this.props.targets[this.state.selectedTarget].target.id;
+    this.props.deleteTarget({ id: selectedTargetID, index: this.state.selectedTarget });
+    this.setState({
+      selectedTarget: null
+    });
+  }
+
+  selectTarget = (index) => {
+    if (!this.props.match.isExact) history.push(routes.index);
+    this.setState({
+      selectedTarget: index,
+    });
+  }
+
   render() {
     const { location, subRoutes, targets } = this.props;
-    const { target, coords, selectedTarget } = this.state;
+    const { target, coords, selectedTarget, activeConversation } = this.state;
     return (
       <div className="home-page">
-        <ActionCableProvider url={process.env.API_WS_URL}>
-          {selectedTarget != undefined &&
-            <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
-          }
-        </ActionCableProvider>
+        {selectedTarget != undefined &&
+          <div onClick={this.deleteSelectedTarget} className="delete-target"> <FormattedMessage id="target.delete" /> </div>
+        }
+
         {/* propless routes */}
         {subRoutes && subRoutes.map((route, index) =>
           <RouteFromPath key={index} {...route} />)}
+
         {/* routes with props */}
         <RouteFromPath
           path={routes.newTarget}
@@ -91,6 +100,32 @@ class HomePage extends React.Component {
               initialValues={target}
             />)}
         />
+
+        <RouteFromPath
+          path={routes.index}
+          exact
+          render={props => (
+            <Menu
+              {...props}
+              setActiveConversation={this.setActiveConversation}
+            />
+          )}
+        />
+
+        <RouteFromPath
+          path={routes.chat}
+          exact
+          render={props => (
+            <ActionCableProvider url={process.env.API_WS_URL}>
+              <Chat
+                {...props}
+                activeConversation={activeConversation}
+              />
+            </ActionCableProvider>
+          )}
+        />
+
+        {/* Map component */}
         {this.state.coords &&
           <Map
             isMarkerShown
