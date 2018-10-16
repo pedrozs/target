@@ -26,10 +26,14 @@ class HomePage extends React.Component {
     const { getTopics, getTargets } = this.props;
     getTopics();
     getTargets();
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { coords } = position;
-      this.setState({ coords });
-    });
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const { coords } = position;
+        this.setState({ coords });
+      });
+    } else {
+      this.setState({ coords: { lat: -34.901112, lng: -56.164532 } });
+    }
   }
 
   setTargetRadius = ({ target: { value } }) => {
