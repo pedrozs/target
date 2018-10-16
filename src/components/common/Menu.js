@@ -36,7 +36,7 @@ const Menu = ({ logout, username, conversations, targets }) => (
         <a className="logout" onClick={logout}><FormattedMessage id="home.logout" /></a>
       </p>
       <div className="separator" />
-      { (targets.length == 0) ?
+      { (!targets.length) ?
         <p className="target-slogan center">
           <FormattedMessage id="home.firstTarget" />
         </p> : renderConversations(conversations)
