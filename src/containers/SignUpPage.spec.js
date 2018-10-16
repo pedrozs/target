@@ -70,10 +70,6 @@ describe('<SignUpPage />', () => {
 
     sessionService.saveUser = jest.fn(() => Promise.resolve());
     sessionService.saveSession = jest.fn(() => Promise.resolve());
-<<<<<<< HEAD
-=======
-    // sessionService.loadSession = jest.fn(() => Promise.reject('Session not found'));
->>>>>>> SignUpPage test
   });
 
   it('should display a username input', () => {

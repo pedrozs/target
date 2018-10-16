@@ -3,22 +3,24 @@ import { object } from 'prop-types';
 
 import profilePic from '../../img/guy.svg';
 
-const Conversation = ({ conversation }) => (
+const Conversation = ({
+  conversation: { unreadMessages, user, lastMessage, topicIcon }
+}) => (
   <div className="row conversation">
-    {conversation.unreadMessages != 0 &&
-      <div className="unread-messages">{conversation.unreadMessages}</div>
+    {unreadMessages != 0 &&
+      <div className="unread-messages">{unreadMessages}</div>
     }
     <div className="conversation-profile-pic"><img src={profilePic} alt="Avatar" /></div>
     <div className="conversation-description">
-      <div className="user-full-name">{conversation.user.fullName}</div>
-      <div className="last-message">{conversation.lastMessage}</div>
+      <div className="user-full-name">{user.fullName}</div>
+      <div className="last-message">{lastMessage}</div>
     </div>
-    <div className="topic">{conversation.topicIcon}</div>
+    <div className="topic">{topicIcon}</div>
   </div>
 );
 
 Conversation.propTypes = {
-  conversation: object
+  conversation: object.isRequired
 };
 
 export default Conversation;
