@@ -4,7 +4,7 @@ import { GET_CONVERSATION_SUCCESS } from '../actions/actionTypes';
 
 const initialState = fromJS([]);
 
-const topics = (state = initialState, { type, conversations }) => {
+const conversations = (state = initialState, { type, conversations }) => {
   switch (type) {
     case GET_CONVERSATION_SUCCESS: {
       return fromJS(conversations);
@@ -14,4 +14,4 @@ const topics = (state = initialState, { type, conversations }) => {
   }
 };
 
-export default topics;
+export default conversations;
