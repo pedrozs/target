@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ToastContainer } from 'react-toastify';
+import Popup from 'react-popup';
 import 'react-toastify/dist/ReactToastify.css';
 
 import history from '../utils/history';
@@ -29,6 +30,7 @@ const App = ({ authenticated, checked }) => (
         </Switch>
       }
     </ConnectedRouter>
+    <Popup />
     <ToastContainer
       hideProgressBar
       position="top-right"

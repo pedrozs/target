@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import Popup from 'react-popup';
 
 import { getConversations } from './conversationsActions';
 import * as types from './actionTypes';
@@ -27,7 +28,10 @@ export const getTargets = () => (dispatch) => {
 export const createTarget = target => (dispatch) => {
   history.push(routes.index);
   targetApi.createTarget(target)
-    .then(() => {
+    .then(({ matchedUser }) => {
+      if (matchedUser) {
+        Popup.alert(`You have a new match! ${matchedUser.fullName}`, 'Yey!');
+      }
       dispatch(getTargets());
       dispatch(getConversations());
       toast.success('Target created successfully');

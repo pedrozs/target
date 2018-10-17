@@ -47,8 +47,13 @@ class Chat extends React.Component {
           chatChannel: 'ChatChannel',
           chatChannelAction: 'send_message',
           roomIdentifier: 'match_conversation_id',
+          headers: {
+            HTTP_AUTHORIZATION: 'pedro@rootstrap.com'
+          }
         },
         {
+          origin: 'target-app',
+          headers: { origin: 'target' },
           received: (newLine) => {
             console.log(newLine);
           }
