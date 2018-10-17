@@ -4,31 +4,36 @@ import { sessionService } from 'redux-react-session';
 import sessionApi from '../api/sessionApi';
 
 export const login = user =>
-  () =>
-    sessionApi.login({ user }).then(({ data: user }) => {
-      sessionService.saveUser(user);
-    }).catch((err) => {
+  async () => {
+    try {
+      const response = await sessionApi.login({ user });
+      sessionService.saveUser(response.user);
+    } catch (err) {
       throw new SubmissionError({
         _error: err.errors
       });
-    });
+    }
+  };
 
 export const loginFacebook = user =>
-  () => {
-    sessionApi.loginFacebook({ accessToken: user }).then(({ data: user }) => {
-      sessionService.saveUser(user);
-    }).catch((err) => {
+  async () => {
+    try {
+      const response = sessionApi.loginFacebook({ accessToken: user });
+      sessionService.saveUser(response.user);
+    } catch (err) {
       throw new SubmissionError({
         _error: err.errors
       });
-    });
+    }
   };
 
 export const logout = () =>
-  () =>
-    sessionApi.logout().then(() => {
+  async () => {
+    try {
+      await sessionApi.logout();
       sessionService.deleteSession();
       sessionService.deleteUser();
-    }).catch((err) => {
+    } catch (err) {
       throw (err);
-    });
+    }
+  };

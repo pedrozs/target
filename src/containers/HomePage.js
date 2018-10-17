@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { string, func, array, object } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import { ActionCableProvider } from 'react-actioncable-provider';
+// import { ActionCableProvider } from 'react-actioncable-provider';
 
 import Menu from '../components/common/Menu';
 import Chat from '../components/user/Chat';
@@ -116,12 +116,12 @@ class HomePage extends React.Component {
           path={routes.chat}
           exact
           render={props => (
-            <ActionCableProvider url={process.env.API_WS_URL}>
+            // <ActionCableProvider url={process.env.API_WS_URL}>
               <Chat
                 {...props}
                 activeConversation={activeConversation}
               />
-            </ActionCableProvider>
+            // </ActionCableProvider>
           )}
         />
 
